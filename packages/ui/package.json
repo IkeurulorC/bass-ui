@@ -10,7 +10,9 @@
     "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest run",
+    "chromatic": "chromatic"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.2",
@@ -18,9 +20,12 @@
     "@repo/typescript-config": "workspace:*",
     "@storybook/addon-a11y": "^10.3.5",
     "@storybook/addon-docs": "^10.3.5",
+    "@storybook/addon-interactions": "^8.6.14",
     "@storybook/addon-onboarding": "^10.3.5",
     "@storybook/addon-vitest": "^10.3.5",
     "@storybook/react-vite": "^10.3.5",
+    "@storybook/test": "^8.6.15",
+    "@storybook/test-runner": "^0.24.3",
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
