@@ -2,7 +2,6 @@
 import storybook from "eslint-plugin-storybook";
 
 import { config } from "@repo/eslint-config/react-internal";
-import someConfig from "some-other-config-you-use";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 /** @type {import("eslint").Linter.Config[]} */
@@ -10,5 +9,5 @@ export default [
   ...config,
   someConfig,
   eslintConfigPrettier,
-  ...storybook.configs["flat/recommended"]
+  ...storybook.configs["flat/recommended"],
 ];
