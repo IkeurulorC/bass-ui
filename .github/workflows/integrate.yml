@@ -45,3 +45,5 @@ jobs:
 
       - name: run chromatic
         run: pnpm --filter "@repo/ui" chromatic
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
