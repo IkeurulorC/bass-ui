@@ -7,7 +7,6 @@ import eslintConfigPrettier from "eslint-config-prettier/flat";
 /** @type {import("eslint").Linter.Config[]} */
 export default [
   ...config,
-  someConfig,
   eslintConfigPrettier,
   ...storybook.configs["flat/recommended"],
 ];
