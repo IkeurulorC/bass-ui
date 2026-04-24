@@ -1,3 +1,7 @@
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 name: Bass-UI Continuous Intergration
 
 on:
@@ -13,16 +17,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: "pnpm"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -34,10 +38,10 @@ jobs:
         run: pnpm lint
 
       - name: run test
-        run: pnpm test
+        run: pnpm test --filter "...[origin/main]"
 
       - name: run build
-        run: pnpm build
+        run: pnpm build --filter "...[origin/main]"
 
       - name: run chromatic
-        run: pnpm chromatic
+        run: pnpm --filter "@repo/ui" chromatic
