@@ -1,0 +1,35 @@
+[21:48:13.388] [INFO] storybook v10.3.5
+[21:48:15.915] [DEBUG] Getting package.json info for C:/Dev/bass-ui/packages/ui/package.json...
+[21:48:15.922] [WARN] You are currently using Storybook [1m10.3.5[22m but you have packages which are incompatible with it:
+
+- @storybook/addon-interactions@8.6.14 which depends on 8.6.14
+ Repo: https://github.com/storybookjs/storybook/tree/next/code/addons/interactions
+- @storybook/test@8.6.15 which depends on 8.6.15
+ Repo: https://github.com/storybookjs/storybook/tree/next/code/lib/test
+
+Please consider updating your packages or contacting the maintainers for compatibility details.
+
+For more details on compatibility guidance, see:
+https://github.com/storybookjs/storybook/issues/32836
+[21:48:21.753] [WARN] 🚨 Unable to index ./components/ActionButton/ActionButton.tsx:
+  Error: Invariant failed: No matching indexer found for C:/Dev/bass-ui/packages/ui/components/ActionButton/ActionButton.tsx
+    at invariant (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/_node-chunks/chunk-KIK2P2SN.js:20:11)
+    at _StoryIndexGenerator.extractStories (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6106:5)
+    at file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6052:83
+    at file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6028:45
+    at Array.map (<anonymous>)
+    at file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6025:30
+    at Array.map (<anonymous>)
+    at _StoryIndexGenerator.updateExtracted (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6017:23)
+    at _StoryIndexGenerator.ensureExtracted (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6051:16)
+    at _StoryIndexGenerator.initialize (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6012:16)
+[21:48:21.773] [ERROR] Error: Unable to index ./components/ActionButton/ActionButton.tsx
+    at _StoryIndexGenerator.getIndexAndStats (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6282:15)
+    at async _StoryIndexGenerator.getIndex (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6271:13)
+    at async Object.experimental_serverChannel (file:///C:/Dev/bass-ui/node_modules/.pnpm/@storybook+addon-vitest@10.3.5_@vitest+browser-playwright@4.1.5_playwright@1.59.1_vite@8.0.9__zz7hlw2a6jeh3u2f3ci6qelrmy/node_modules/@storybook/addon-vitest/dist/preset.js:464:14)
+    at async buildDevStandalone (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:8027:32)
+    at async withTelemetry (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/_node-chunks/chunk-FIR43JGQ.js:225:12)
+    at async dev (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/bin/core.js:2736:3)
+    at async _Command.<anonymous> (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/bin/core.js:2806:92)
+[21:48:21.783] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.
