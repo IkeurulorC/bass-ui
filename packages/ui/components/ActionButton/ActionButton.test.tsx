@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { expect, describe, it, vi } from "vitest";
-import { UserEvent, userEvent } from "@testing-library/user-event";
 import ActionButton from "./ActionButton";
 import "@testing-library/jest-dom/vitest";
 
@@ -24,7 +23,7 @@ describe("ActionButton (Unit)", () => {
         Delete
       </ActionButton>
     );
-    let btn = screen.getByRole("button");
+    const btn = screen.getByRole("button");
 
     expect(btn).toHaveClass("bg-btn-danger-bg", "px-5");
     expect(btn).not.toHaveClass("bg-btn-primary-bg");
