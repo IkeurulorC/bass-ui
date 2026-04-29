@@ -115,7 +115,9 @@ function ActionButton({
   const [isLoading, setIsLoading] = useState(false);
 
   const handleclick = () => {
-    isLoading === false ? setIsLoading(true) : null;
+    if (!isLoading) {
+      setIsLoading(true);
+    }
   };
   return (
     <button

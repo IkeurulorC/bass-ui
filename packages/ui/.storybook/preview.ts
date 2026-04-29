@@ -1,6 +1,6 @@
 import type { Preview } from "@storybook/react-vite";
 import { withThemeByClassName } from "@storybook/addon-themes";
-//@ts-expect-error
+//@ts-expect-error: Storybook Context typing mismatch
 import "../src/styles/globals.css";
 
 const preview: Preview = {
