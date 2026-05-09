@@ -1,0 +1,250 @@
+* {
+  font-family: "Inclusive Sans", sans-serif;
+  font-optical-sizing: auto;
+}
+
+dialog::backdrop {
+  background-color: #00000080;
+  backdrop-filter: blur(4px);
+}
+
+@keyframes mobile-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.bass-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  gap: 20px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.bass-modal-header .header-text {
+  margin: 0 auto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: x-large;
+  line-height: 22px;
+  text-align: center;
+}
+
+.bass-modal-header .cancel-button {
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.bass-modal-header .cancel-button:hover {
+  background-color: #f3f4f6;
+}
+
+.bass-modal-header .cancel-button svg {
+  width: 18px; /* Increase from 14px */
+  height: 18px; /* Increase from 14px */
+  display: block; /* Removes weird bottom spacing */
+}
+
+.bass-modal-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 8px;
+  gap: 8px;
+  color: #4b5563;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.bass-modal-main .main-content {
+  font-family: "Inclusive Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+@media (max-width: 480px) {
+  .bass-modal-container[open] {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 40px 24px 32px 24px;
+
+    max-width: none;
+    max-height: 45vh;
+
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+    margin-bottom: 0;
+    border-radius: 20px 20px 0 0;
+
+    animation: mobile-slide-up 0.3s ease-out;
+  }
+
+  .bass-modal-footer {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    gap: 12px;
+
+    height: min-content;
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+  }
+
+  .bass-modal-footer .cancel-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 40px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #6b7280;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    border: none;
+    border-radius: 4px;
+  }
+
+  .bass-modal-footer .discard-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 40px;
+    gap: 10px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #ffffff;
+
+    border: none;
+    background: #6366f1;
+    border-radius: 4px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bass-modal-container[open] {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 32px;
+    gap: 12px;
+
+    position: absolute;
+    width: 300px;
+    height: min-content;
+
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+
+    animation: modal-appear 0.2s ease-out;
+  }
+
+  .bass-modal-footer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: 4px;
+    gap: 20px;
+
+    height: min-content;
+    padding-left: 5px;
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+  }
+
+  .bass-modal-footer .cancel-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 40px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #6b7280;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    border: none;
+    border-radius: 4px;
+  }
+
+  .bass-modal-footer .discard-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 40px;
+    gap: 10px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #ffffff;
+
+    border: none;
+    background: #6366f1;
+    border-radius: 4px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+}
