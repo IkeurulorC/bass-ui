@@ -1,0 +1,131 @@
+
+
+import React from "react";
+import { cva, VariantProps } from "class-variance-authority";
+import ActionButton from "../ActionButton/ActionButton";
+import { cn } from "../../src/utils";
+
+const modalVariants = cva(
+  [
+    "block",
+    "m-0",
+    "p-8",
+    "gap-3",
+    "flex",
+    "flex-col",
+    "bg-surface-overlay",
+    "shadow-2xl",
+    "border-none",
+    "z-50",
+    "font-['Inclusive_Sans']",
+    "transition-all",
+    "justify-start",
+  ],
+  {
+    variants: {
+      size: {
+        sm: [
+          "fixed",
+          "bottom-0",
+          "top-auto",
+          "left-0",
+          "translate-x-0",
+          "translate-y-0",
+          "rounded-t-[20px]",
+          "rounded-b-none",
+          "animate-[mobile-slide-up_0.3s_ease-out]",
+          "max-w-none",
+          "max-h-[45vh]",
+        ],
+        md: [
+          "top-1/2",
+          "bottom-auto",
+          "left-1/2",
+          "-translate-x-1/2",
+          "-translate-y-1/2",
+          "rounded-[16px]",
+          "animate-[modal-appear_0.2s_ease-out]",
+        ],
+        lg: [
+          "top-1/2",
+          "bottom-auto",
+          "left-1/2",
+          "-translate-x-1/2",
+          "-translate-y-1/2",
+          "rounded-[16px]",
+          "h-min",
+          "animate-[modal-appear_0.2s_ease-out]",
+        ],
+      },
+    },
+    defaultVariants: {
+      size: "sm",
+    },
+  }
+);
+
+type ClassVariant = VariantProps<typeof modalVariants>;
+
+interface ModalProps
+  extends ClassVariant, React.DialogHTMLAttributes<HTMLDialogElement> {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const Modal = ({
+  isOpen,
+  title,
+  children,
+  onClose,
+  className,
+  size,
+  ...props
+}: ModalProps) => {
+  if (!isOpen) return null;
+
+  return (
+    <>
+      <dialog className={cn(modalVariants({ size }), className)}>
+        <header className="flex justify-between items-center mb-1 gap-5 flex-none flex-grow-0">
+          <h3 className="text-2xl font-medium not-italic leading-[22px] text-center">
+            {title}
+          </h3>
+          <button
+            aria-label="Close"
+            className="my-0 mx-auto rounded-[50%] transition-colors duration-200 border-none bg-transparent cursor-pointer font-medium not-italic leading-[22px] text-center"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              className="w-[18px] h-[18px] block"
+            >
+              <path
+                d="M6.575 7.975L1.675 12.875C1.49167 13.0583 1.25833 13.15 0.975 13.15C0.691667 13.15 0.458333 13.0583 0.275 12.875C0.0916663 12.6917 0 12.4583 0 12.175C0 11.8917 0.0916663 11.6583 0.275 11.475L5.175 6.575L0.275 1.675C0.0916663 1.49167 0 1.25833 0 0.975C0 0.691667 0.0916663 0.458333 0.275 0.275C0.458333 0.0916663 0.691667 0 0.975 0C1.25833 0 1.49167 0.0916663 1.675 0.275L6.575 5.175L11.475 0.275C11.6583 0.0916663 11.8917 0 12.175 0C12.4583 0 12.6917 0.0916663 12.875 0.275C13.0583 0.458333 13.15 0.691667 13.15 0.975C13.15 1.25833 13.0583 1.49167 12.875 1.675L7.975 6.575L12.875 11.475C13.0583 11.6583 13.15 11.8917 13.15 12.175C13.15 12.4583 13.0583 12.6917 12.875 12.875C12.6917 13.0583 12.4583 13.15 12.175 13.15C11.8917 13.15 11.6583 13.0583 11.475 12.875L6.575 7.975Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </header>
+        <main className="flex flex-row justify-center p-2 gap-2 flex-none order-1 flex-grow-0 text-text-secondary">
+          {children}
+        </main>
+        <footer className="flex flex-col-reverse md:flex-row sm:w-full md:h-min md:pl-[5px] gap-3 h-min flex-none order-2 flex-grow-0">
+          <ActionButton
+            intent="ghost"
+            className="flex flex-row justify-center items-center py-[10px] px-10 not-italic font-semibold text-sm flex-none flex-grow-0 border-none rounded-[4px]"
+          >
+            Cancel
+          </ActionButton>
+          <ActionButton
+            intent="danger"
+            className="flex flex-row justify-center items-center py-[10px] px-10 not-italic font-semibold text-sm flex-none flex-grow-0 border-none rounded-[4px]"
+          >
+            Discard
+          </ActionButton>
+        </footer>
+      </dialog>
+    </>
+  );
+};

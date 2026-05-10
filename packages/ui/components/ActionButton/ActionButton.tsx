@@ -2,8 +2,18 @@ import { cva, VariantProps } from "class-variance-authority";
 import { useState } from "react";
 import { cn } from "../../src/utils.ts";
 
+function ActionButtonLoader({ spinnerIntent, size, className }: SpinnerProps) {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div
+        className={cn(spinnerVariants({ spinnerIntent, size }), className)}
+      />
+    </div>
+  );
+}
+
 const buttonVariants = cva(
-  ["font-semibold", "flex", "justify-around", "items-center"],
+  ["font-semibold", "flex", "justify-around", "items-center", "shadow-lg"],
   {
     variants: {
       intent: {
@@ -35,7 +45,7 @@ const buttonVariants = cva(
           "border",
           "bg-btn-ghost-bg",
           "border-btn-ghost-border",
-          "!text-text-primary",
+          "!text-slate-500",
           "hover:bg-btn-ghost-bg-hover",
           "active:bg-btn-ghost-bg-active",
         ],
@@ -82,7 +92,7 @@ const buttonVariants = cva(
 
 const spinnerVariants = cva(["border-2", "rounded-full", "animate-spin"], {
   variants: {
-    intent: {
+    spinnerIntent: {
       primary: ["border-btn-primary-border", "border-t-white"],
       secondary: ["border-btn-secondary-border", "border-t-white"],
       danger: ["border-btn-danger-border", "border-t-white"],
@@ -96,14 +106,21 @@ const spinnerVariants = cva(["border-2", "rounded-full", "animate-spin"], {
   },
   defaultVariants: {
     size: "lg",
-    intent: "primary",
+    spinnerIntent: "primary",
   },
 });
+
+interface SpinnerProps
+  extends
+    VariantProps<typeof spinnerVariants>,
+    React.AreaHTMLAttributes<HTMLDivElement> {}
 
 type ClassVariant = VariantProps<typeof buttonVariants>;
 
 interface ButtonProps
-  extends ClassVariant, React.ButtonHTMLAttributes<HTMLButtonElement> {}
+  extends ClassVariant, React.ButtonHTMLAttributes<HTMLButtonElement> {
+  spinnerIntent?: boolean;
+}
 
 function ActionButton({
   intent,
@@ -129,14 +146,12 @@ function ActionButton({
       onClick={handleclick}
       {...props}
     >
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className={cn(spinnerVariants({ intent, size }))} />
-        </div>
-      )}
+      {isLoading && <ActionButtonLoader spinnerIntent={intent} />}
       {props.children}
     </button>
   );
 }
+
+ActionButton.Loader = ActionButtonLoader;
 
 export default ActionButton;

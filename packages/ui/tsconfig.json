@@ -2,8 +2,24 @@
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     // "outDir": "dist",
-    "strictNullChecks": true
+    "target": "ESNext",
+    "module": "ESNext",
+    "strictNullChecks": true,
+    "allowJs": true,
+    "checkJs": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": ["src", ".storybook/global.d.ts"],
+  "include": [
+    "src",
+    ".storybook/global.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/env.d.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }
