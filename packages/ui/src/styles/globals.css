@@ -48,13 +48,26 @@
   --btn-danger-bg-hover: var(--color-red-700);
   --btn-danger-bg-active: var(--color-red-800);
 
-  /* button ghost*/
+  /* button ghost */
   --btn-ghost-bg: color-mix(in srgb, var(--color-white), transparent 100%);
   --btn-ghost-border: var(--border-subtle);
   --btn-ghost-bg-active: var(--color-slate-200);
 
-  /* button disabled*/
+  /* button disabled */
   --btn-disabled-text: var(--color-slate-400);
+
+  --modal-shadow: var(--color-modal-shadow) /* Spacing Scale (Base 16px) */
+    --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+
+  /* Radius Scale */
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
 }
 
 .dark {
@@ -109,13 +122,19 @@
 
   /* button disabled*/
   --btn-disabled-text: var(--color-slate-600);
+
+  --modal-shadow: var(--color-modal-shadow);
 }
 
 @theme {
+  --font-sans: "Inclusive Sans Variable", ui-sans-serif, system-ui, sans-serif;
   /* =========================================
                               SEMANTIC TOKENS (The "Intent")
      ========================================= */
 
+  /*--------------------------------------------------------------------
+                                      Mapping Colours
+     --------------------------------------------------------------------*/
   --color-action-primary-bg: var(--action-primary-bg);
   --color-action-primary-hover: var(--action-primary-hover);
   --color-action-ghost-hover: var(--action-ghost-hover);
@@ -135,12 +154,34 @@
 
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
-  --color-text-tertiary: var(--text-tertieary);
+  --color-text-tertiary: var(--text-tertiary);
   --color-text-on-interactive: var(--text-on-interactive);
 
+  /*--------------------------------------------------------------------
+                                      Mapping Spacing
+     --------------------------------------------------------------------*/
+
   /* =========================================
-     3. COMPONENT TOKENS (The "Usage")
+                       COMPONENT TOKENS (The "Usage")
      ========================================= */
+
+  /*--------------------------------------------------------------------
+                                      Mapping Spacing
+     --------------------------------------------------------------------*/
+  --spacing-modal-xs: var(--spacing-xs);
+  --spacing-modal-sm: var(--spacing-sm);
+  --spacing-modal-md: var(--spacing-md);
+  --spacing-modal-lg: var(--spacing-lg);
+  --spacing-modal-xl: var(--spacing-xl);
+
+  --radius-modal-sm: var(--radius-sm);
+  --radius-modal-md: var(--radius-md);
+  --radius-modal-lg: var(--radius-lg);
+  --radius-modal-xl: var(--radius-xl);
+
+  /*--------------------------------------------------------------------
+                                      Mapping Colours
+     --------------------------------------------------------------------*/
   /* Button */
   --color-btn-primary-bg: var(--action-primary-bg);
   --color-btn-primary-border: var(--action-primary-bg);
@@ -168,4 +209,29 @@
 
   --color-btn-disabled-bg: var(--action-disabled);
   --color-btn-disabled-text: var(--btn-disabled-text);
+
+  --color-modal-shadow: var(0 20px 25px -5px rgba(0, 0, 0, 0.1));
+}
+
+/* --- Modal Reset & Base --- */
+
+/* --- Global Keyframes --- */
+@keyframes mobile-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

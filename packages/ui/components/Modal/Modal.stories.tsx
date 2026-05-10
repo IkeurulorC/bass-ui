@@ -27,14 +27,16 @@ export const Default = {
     ),
     children: (
       <p className="not-italic text-[15px] font-medium text-left font-sans text-gray-600 dark:text-gray-400">
-        Are you sure you want to discard changes? This action can't be undone
+        {
+          "Are you sure you want to discard changes? This action can't be undone"
+        }
       </p>
     ),
     footer: "Discard",
   },
 };
 
-export const longText = {
+export const LongText = {
   args: {
     // These match the "props" your Modal expects
     isOpen: true,
@@ -46,18 +48,16 @@ export const longText = {
     ),
     children: (
       <p className="not-italic text-[15px] font-medium text-left font-sans text-gray-600 dark:text-gray-400">
-        Are you sure you want to discard changes? This action can't be undone
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque error sit
-        reprehenderit possimus corrupti pariatur debitis quis quibusdam quasi
-        accusantium, obcaecati fugiat blanditiis distinctio saepe quos magnam
-        reiciendis dicta earum.
+        {
+          "Are you sure you want to discard changes? This action can't be undone Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque error sit reprehenderit possimus corrupti pariatur debitis quis quibusdam quasi accusantium, obcaecati fugiat blanditiis distinctio saepe quos magnam reiciendis dicta earum."
+        }
       </p>
     ),
     footer: "Discard",
   },
 };
 
-export const sm = {
+export const Small = {
   args: {
     // These match the "props" your Modal expects
     isOpen: true,
@@ -69,31 +69,13 @@ export const sm = {
     ),
     children: (
       <p className="not-italic text-[15px] font-medium text-left font-sans text-gray-600 dark:text-gray-400">
-        Are you sure you want to discard changes? This action can't be undone
+        {
+          "Are you sure you want to discard changes? This action can't be undone"
+        }
       </p>
     ),
     footer: "Discard",
     size: "sm",
-  },
-};
-
-export const md = {
-  args: {
-    // These match the "props" your Modal expects
-    isOpen: true,
-    title: "Discard Changes",
-    header: (
-      <h3 className="text-2xl font-medium not-italic leading-[22px] text-center">
-        Discard Changes
-      </h3>
-    ),
-    children: (
-      <p className="not-italic text-[15px] font-medium text-left font-sans text-gray-600 dark:text-gray-400">
-        Are you sure you want to discard changes? This action can't be undone
-      </p>
-    ),
-    action: "Discard",
-    size: "md",
   },
 };
 
@@ -109,7 +91,9 @@ export const ActionButton = {
     ),
     children: (
       <p className="not-italic text-[15px] font-medium text-left font-sans text-gray-600 dark:text-gray-400">
-        Are you sure you want to discard changes? This action can't be undone
+        {
+          "Are you sure you want to discard changes? This action can't be undone"
+        }
       </p>
     ),
     footer: (
@@ -121,7 +105,7 @@ export const ActionButton = {
   },
 };
 
-export const smActionButton = {
+export const SmActionButton = {
   args: {
     // These match the "props" your Modal expects
     isOpen: true,
@@ -133,7 +117,9 @@ export const smActionButton = {
     ),
     children: (
       <p className="not-italic text-[15px] font-medium text-left font-sans text-gray-600 dark:text-gray-400">
-        Are you sure you want to discard changes? This action can't be undone
+        {
+          "Are you sure you want to discard changes? This action can't be undone"
+        }
       </p>
     ),
     footer: (
@@ -160,7 +146,9 @@ export const Mix = {
     ),
     children: (
       <p className="not-italic text-[15px] font-medium text-left font-sans text-gray-600 dark:text-gray-400">
-        Are you sure you want to discard changes? This action can't be undone
+        {
+          "Are you sure you want to discard changes? This action can't be undone"
+        }
       </p>
     ),
     footer: (
@@ -186,7 +174,9 @@ export const StyledActionButton = {
     ),
     children: (
       <p className="not-italic text-[15px] font-medium text-left font-sans text-gray-600 dark:text-gray-400">
-        Are you sure you want to discard changes? This action can't be undone
+        {
+          "Are you sure you want to discard changes? This action can't be undone"
+        }
       </p>
     ),
     footer: (
@@ -218,7 +208,9 @@ export const Trigger = {
     ),
     children: (
       <p className="not-italic text-[15px] font-medium text-left font-sans text-gray-600 dark:text-gray-400">
-        Are you sure you want to discard changes? This action can't be undone
+        {
+          "Are you sure you want to discard changes? This action can't be undone"
+        }
       </p>
     ),
     footer: "Discard",

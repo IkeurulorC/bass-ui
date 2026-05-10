@@ -1,6 +1,6 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
 import { Modal } from "./Modal";
 
 describe("Tests the Modal Component", () => {
@@ -22,8 +22,9 @@ describe("Tests the Modal Component", () => {
         </Modal.Header>
         <Modal.Body>
           <p className="not-italic text-[15px] font-medium text-left font-sans text-gray-600 dark:text-gray-400">
-            Are you sure you want to discard changes? This action can't be
-            undone
+            {
+              "Are you sure you want to discard changes? This action can't be undone"
+            }
           </p>
         </Modal.Body>
         <Modal.Footer>Discard</Modal.Footer>

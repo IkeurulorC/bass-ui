@@ -45,6 +45,13 @@ export const Medium = {
 export const Small = {
   args: {
     size: "sm",
-    children: "contact me",
+    children: "Contact me",
+  },
+};
+export const Styled = {
+  args: {
+    className:
+      "flex flex-none grow-0 flex-row items-center justify-center gap-[10px] rounded-[4px] border-none bg-indigo-500 px-10 py-[10px] font-sans text-sm font-semibold not-italic text-white min-w-min",
+    children: "Discard",
   },
 };

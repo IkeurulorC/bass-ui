@@ -10,13 +10,7 @@ interface Close {
 
 const ModalContext = createContext<Close | null>(null);
 
-function ModalTrigger({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+function ModalTrigger({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
@@ -102,6 +96,7 @@ function ModalCancel({
         "flex flex-none grow-0 flex-row items-center justify-center rounded-[4px] border-none px-10 py-[10px] font-sans text-sm font-semibold not-italic text-slate-500! min-w-min",
         className
       )}
+      {...props}
     >
       Cancel
     </ActionButton>
@@ -134,6 +129,7 @@ function ModalAction({
         "flex flex-none grow-0 flex-row items-center justify-center gap-[10px] rounded-[4px] border-none bg-indigo-500 dark:bg-indigo-600 px-10 py-[10px] font-sans text-sm font-semibold not-italic text-white min-w-min",
         className
       )}
+      {...props}
     >
       {action}
     </ActionButton>
@@ -212,7 +208,6 @@ export const Modal = ({
   size,
   title,
   description,
-  action,
   ...props
 }: ModalProps) => {
   // Use the external prop to initialize your local state

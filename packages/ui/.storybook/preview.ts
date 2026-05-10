@@ -1,6 +1,8 @@
 import type { Preview } from "@storybook/react-vite";
 import { withThemeByClassName } from "@storybook/addon-themes";
 //@ts-expect-error: Storybook Context typing mismatch
+import "@fontsource-variable/inclusive-sans";
+//@ts-expect-error: Storybook Context typing mismatch
 import "../src/styles/globals.css";
 
 const preview: Preview = {
@@ -17,6 +19,15 @@ const preview: Preview = {
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
       test: "todo",
+      config: {
+        rules: [
+          {
+            // This disables the "aria-hidden-focus" rule only for Radix guards
+            id: "aria-hidden-focus",
+            selector: "*:not([data-radix-focus-guard])",
+          },
+        ],
+      },
     },
   },
   decorators: [
