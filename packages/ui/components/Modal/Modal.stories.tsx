@@ -3,7 +3,7 @@ import BaseActionButton from "../ActionButton/ActionButton";
 import React from "react";
 
 export default {
-  title: "Modal",
+  title: "Components/Modal",
   component: Modal,
   argTypes: {
     header: { control: false },

@@ -46,6 +46,9 @@ jobs:
         run: pnpm build --filter "...[origin/main]"
 
       - name: run chromatic
-        run: pnpm --filter "@repo/ui" chromatic
-        env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/ui # Tells Chromatic exactly where the components live
+          buildScriptName: build-storybook # Forces it to run the build script in the UI package
+          exitOnceUploaded: true
