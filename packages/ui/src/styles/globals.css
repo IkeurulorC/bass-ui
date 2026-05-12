@@ -70,6 +70,31 @@
   --radius-md: 0.375rem; /* 6px */
   --radius-lg: 0.5rem; /* 8px */
   --radius-xl: 0.75rem; /* 12px */
+
+  /* Toggle */
+  --toggle-primary: var(--color-emerald-500);
+
+  /* --- Toast Notification--- */
+
+  /* Info Variant */
+  --toast-info-bg: var(--color-sky-50);
+  --toast-info-border: var(--color-sky-200);
+  --toast-info-text: var(--color-sky-900);
+
+  /* Success Variant */
+  --toast-success-bg: var(--color-emerald-50);
+  --toast-success-border: var(--color-emerald-200);
+  --toast-success-text: var(--color-emerald-900);
+
+  /* Warning Variant */
+  --toast-warning-bg: var(--color-amber-50);
+  --toast-warning-border: var(--color-amber-200);
+  --toast-warning-text: var(--color-amber-900);
+
+  /* Error Variant */
+  --toast-error-bg: var(--color-rose-50);
+  --toast-error-border: var(--color-rose-200);
+  --toast-error-text: var(--color-rose-900);
 }
 
 .dark {
@@ -82,7 +107,7 @@
 
   /* Sentiment */
   --sentiment-positive-bg: var(--color-emerald-400);
-  --sentiment-negative-bg: var(--color-red-500);
+  --sentiment-negative-bg: var(--color-rose-500);
   --sentiment-warning-bg: var(--color-amber-400);
   --sentiment-info-bg: var(--color-sky-400);
 
@@ -126,6 +151,34 @@
   --btn-disabled-text: var(--color-slate-600);
 
   --modal-shadow: var(--color-modal-shadow);
+
+  /* Toggle */
+  --toggle-primary: var(--color-indigo-500);
+
+  /* --- Toast Notification--- */
+  --toast-info-bg: color-mix(in srgb, var(--color-sky-950), transparent 20%);
+  --toast-info-border: var(--color-sky-800);
+  --toast-info-text: var(--color-sky-200);
+
+  --toast-success-bg: color-mix(
+    in srgb,
+    var(--color-emerald-950),
+    transparent 20%
+  );
+  --toast-success-border: var(--color-emerald-800);
+  --toast-success-text: var(--color-emerald-200);
+
+  --toast-warning-bg: color-mix(
+    in srgb,
+    var(--color-amber-950),
+    transparent 20%
+  );
+  --toast-warning-border: var(--color-amber-800);
+  --toast-warning-text: var(--color-amber-200);
+
+  --toast-error-bg: color-mix(in srgb, var(--color-rose-950), transparent 20%);
+  --toast-error-border: var(--color-rose-800);
+  --toast-error-text: var(--color-rose-200);
 }
 
 @theme {
@@ -212,7 +265,32 @@
   --color-btn-disabled-bg: var(--action-disabled);
   --color-btn-disabled-text: var(--btn-disabled-text);
 
+  /* Modal */
   --color-modal-shadow: var(0 20px 25px -5px rgba(0, 0, 0, 0.1));
+
+  /* Toggle */
+  --color-toggle-primary-bg: var(--toggle-primary);
+  --color-toggle-active-bg: var(--toggle-active);
+  --toggle-shadow-color: rgb(from var(--toggle-primary) r g b / 0.4);
+
+  --toggle-shadow: 0 0 10px var(--toggle-shadow-color);
+
+  /* Toast */
+  --color-toast-info-bg: var(--toast-info-bg);
+  --color-toast-info-border: var(--toast-info-border);
+  --color-toast-info-text: var(--toast-info-text);
+
+  --color-toast-success-bg: var(--toast-success-bg);
+  --color-toast-success-border: var(--toast-success-border);
+  --color-toast-success-text: var(--toast-success-text);
+
+  --color-toast-warning-bg: var(--toast-warning-bg);
+  --color-toast-warning-border: var(--toast-warning-border);
+  --color-toast-warning-text: var(--toast-warning-text);
+
+  --color-toast-error-bg: var(--toast-error-bg);
+  --color-toast-error-border: var(--toast-error-border);
+  --color-toast-error-text: var(--toast-error-text);
 }
 
 /* --- Modal Reset & Base --- */
