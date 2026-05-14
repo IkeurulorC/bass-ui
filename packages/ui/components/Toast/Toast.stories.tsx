@@ -71,7 +71,7 @@ export const Info = {
   },
 };
 
-export const warning = {
+export const Warning = {
   args: {
     providerProps: {
       size: "sm",
@@ -86,7 +86,7 @@ export const warning = {
   },
 };
 
-export const error = {
+export const Error = {
   args: {
     providerProps: {
       size: "sm",

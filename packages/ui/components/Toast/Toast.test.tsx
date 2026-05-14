@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  fireEvent,
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
-import { beforeEach, afterEach, describe, it, expect, vi } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
 import { ToastProvider, useToast } from "./ToastContext";
 import ActionButton from "../ActionButton/ActionButton";
 import { ToastProps } from "./Toast";

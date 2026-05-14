@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
-import { cva, VariantProps } from "class-variance-authority";
+import { createContext, useContext, useState } from "react";
+import { cva } from "class-variance-authority";
 import { cn } from "../../src/utils";
 import { ToastInstance, ToastProps, ToastProviderProps } from "./ToastQueue";
 import * as Toast from "@radix-ui/react-toast";

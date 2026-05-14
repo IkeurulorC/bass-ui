@@ -5,7 +5,7 @@ import * as Toast from "@radix-ui/react-toast";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const ToastVariants = cva(
+export const ToastVariants = cva(
   "relative overflow-hidden rounded-xl shadow-lg grid grid-cols-[auto_1fr_auto] gap-x-4 p-4 items-start border",
   {
     variants: {
@@ -200,7 +200,7 @@ function ToastNotificationAction({
       className={className}
       onClick={action ? action.onClick : () => {}}
     >
-            {children}   
+      {children}
     </Toast.Action>
   );
 }
