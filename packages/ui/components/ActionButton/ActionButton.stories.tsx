@@ -1,7 +1,7 @@
 import ActionButton from "./ActionButton";
 
 export default {
-  title: "Components/call_to_action",
+  title: "Components/ActionButton",
   component: ActionButton,
   tags: ["autodocs"],
 };
