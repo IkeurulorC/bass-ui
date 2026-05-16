@@ -18,14 +18,19 @@
   --sentiment-warning-bg: var(--color-amber-500);
   --sentiment-info-bg: var(--color-sky-600);
 
+  --sentiment-positive-text: var(--color-emerald-400);
+  --sentiment-negative-text: var(--color-red-600);
+  --sentiment-warning-text: var(--color-amber-500);
+  --sentiment-info-text: var(--color-sky-600);
+
   /* Surface */
   --surface-canvas: var(--color-slate-50);
   --surface-card: var(--color-white);
   --surface-overlay: var(--color-white);
 
   /* Borders */
-  --border-subtle: var(--color-slate-200);
-  --border-strong: var(--color-slate-400);
+  --subtle-border: var(--color-slate-200);
+  --strong-border: var(--color-slate-400);
 
   /* Typography */
   --text-primary: var(--color-slate-900);
@@ -52,7 +57,7 @@
 
   /* button ghost */
   --btn-ghost-bg: color-mix(in srgb, var(--color-white), transparent 100%);
-  --btn-ghost-border: var(--border-subtle);
+  --btn-ghost-border: var(--subtle-border);
   --btn-ghost-bg-active: var(--color-slate-200);
 
   /* button disabled */
@@ -111,14 +116,19 @@
   --sentiment-warning-bg: var(--color-amber-400);
   --sentiment-info-bg: var(--color-sky-400);
 
+  --sentiment-positive-text: var(--color-emerald-400);
+  --sentiment-negative-text: var(--color-rose-500);
+  --sentiment-warning-text: var(--color-amber-400);
+  --sentiment-info-text: var(--color-sky-400);
+
   /* Surface */
   --surface-canvas: var(--color-slate-950);
   --surface-card: var(--color-slate-900);
   --surface-overlay: var(--color-slate-800);
 
   /* Borders */
-  --border-subtle: var(--color-slate-800);
-  --border-strong: var(--color-slate-600);
+  --subtle-border: var(--color-slate-800);
+  --strong-border: var(--color-slate-600);
 
   /* Typography */
   --text-primary: var(--color-slate-50);
@@ -201,11 +211,16 @@
   --color-sentiment-warning-bg: var(--sentiment-warning-bg);
   --color-sentiment-info-bg: var(--sentiment-info-bg);
 
+  --color-sentiment-positive-text: var(--sentiment-positive-text);
+  --color-sentiment-negative-text: var(--sentiment-negative-text);
+  --color-sentiment-warning-text: var(--sentiment-warning-text);
+  --color-sentiment-info-text: var(--sentiment-info-text);
+
   --color-surface-canvas: var(--surface-canvas);
   --color-surface-card: var(--surface-card);
   --color-surface-overlay: var(--surface-overlay);
-  --color-border-subtle: var(--border-subtle);
-  --color-border-strong: var(--border-strong);
+  --color-subtle-border: var(--subtle-border);
+  --color-strong-border: var(--strong-border);
 
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
