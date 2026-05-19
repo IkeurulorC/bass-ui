@@ -39,7 +39,7 @@ const LabelVariants = cva(
   }
 );
 
-const TrendVariants = cva("font-mono font-medium", {
+const TrendVariants = cva("font-mono font-semibold", {
   variants: {
     intent: {
       positive: "text-sentiment-positive-text",
