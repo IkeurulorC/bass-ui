@@ -51,8 +51,6 @@ const CommandListVariants = cva(
   }
 );
 
-// "flex w-full cursor-pointer items-center justify-between select-none px-2 py-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
-
 const CommandGroupVariants = cva(
   "flex w-full cursor-pointer items-center justify-between select-none font-medium overflow-hidden p-1 text-sm text-zinc-950 dark:text-zinc-50 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-zinc-500 dark:[&_[cmdk-group-heading]]:text-zinc-400",
   {
@@ -185,7 +183,7 @@ export const CommandGroup = React.forwardRef<
         )}
         {...props}
       >
-        {/* 🎯 The Fix: Keep children in the DOM, toggle visibility purely with CSS.
+        {/* 🎯 Note to self: Keep children in the DOM, toggle visibility purely with CSS.
         If it's collapsed, we hide the items, BUT cmdk can still see and filter them!
       */}
         <div className={cn(!isExpanded && "hidden")}>{children}</div>

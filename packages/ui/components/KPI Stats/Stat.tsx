@@ -185,7 +185,7 @@ export const StatValue = ({
     <div className={valueVariants({ size })}>
       <span
         className={cn(
-          "font-bold tracking-tight text-slate-100 tabular-nums text-xl md:text-3xl lg:text-5xl",
+          "font-bold tracking-tight text-slate-100 tabular-nums text-xl md:text-3xl lg:text-4xl",
           className
         )}
         {...props}

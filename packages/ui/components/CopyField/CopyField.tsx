@@ -5,7 +5,7 @@ import { cn } from "../../src/utils";
 import { ToolTip } from "../Tooltip/Tooltip";
 
 const copyFieldVariants = cva(
-  "flex w-full px-2 py-4 overflow-hidden items-center transition-all duration-200 rounded-md bg-blue-50 border-blue-100 shadow-lg group focus-within:border-blue-500/50",
+  "flex w-full px-2 py-4 overflow-hidden items-center transition-all duration-200 rounded-full bg-blue-50 border-blue-100 shadow-lg group focus-within:border-blue-500/50",
   {
     variants: {
       size: {
@@ -21,7 +21,7 @@ const copyFieldVariants = cva(
 );
 
 const inputVariants = cva(
-  "flex-1 border-2 border-white bg-transparent px-3 py-2 rounded-md text-sm text-slate-600 outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+  "flex-1 border border-white bg-transparent px-3 py-2 rounded-md text-sm text-slate-600 outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       size: {
