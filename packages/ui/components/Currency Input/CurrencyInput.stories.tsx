@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
-import { CurrencyInput } from "./CurrencyInput";
+import { CurrencyInput, RootProps } from "./CurrencyInput";
 
 const meta: Meta<typeof CurrencyInput.Root> = {
   title: "Components/CurrencyInput",
@@ -27,7 +27,7 @@ export default meta;
 type Story = StoryObj<typeof CurrencyInput.Root>;
 
 // Controlled wrapper to manage internal state inside Storybook
-const CurrencyInputWrapper = (args: any) => {
+const CurrencyInputWrapper = (args: RootProps) => {
   const [value, setValue] = useState(args.value || "");
   return (
     <div className="w-full max-w-sm space-y-2">
@@ -46,7 +46,7 @@ const CurrencyInputWrapper = (args: any) => {
         </CurrencyInput.Dropdown>
       </CurrencyInput.Root>
       <div className="text-xs text-muted-foreground font-mono">
-        Raw State: "{value}"
+        Raw State: &ldquo;{value}&rdquo;
       </div>
     </div>
   );

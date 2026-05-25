@@ -132,10 +132,10 @@ const Root = React.forwardRef<HTMLDivElement, RootProps>(
 Root.displayName = "CurrencyInput.Root";
 
 // 2. Max Button Prefix
-export interface MaxButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface MaxButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{className: string};
 
-const MaxButton = React.forwardRef<HTMLButtonElement, MaxButtonProps>(
-  ({ className, ...props }, ref) => {
+const MaxButton = (
+  ({ className, ...props }: MaxButtonProps, ref) => {
     const { onMax, disabled } = useCurrencyInput();
 
     if (!onMax) return null;
@@ -160,10 +160,7 @@ const MaxButton = React.forwardRef<HTMLButtonElement, MaxButtonProps>(
 MaxButton.displayName = "CurrencyInput.MaxButton";
 
 // 3. Actual Numeric Input Field
-export interface InputProps extends Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "value" | "onChange"
-> {}
+export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange">;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
@@ -197,7 +194,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 Input.displayName = "CurrencyInput.Input";
 
 // 4. Currency Selector Dropdown / Addon Slot
-export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type DropdownProps = React.HTMLAttributes<HTMLDivElement>;
 
 const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
   ({ className, children, ...props }, ref) => {
