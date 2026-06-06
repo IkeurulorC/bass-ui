@@ -132,10 +132,10 @@ const Root = React.forwardRef<HTMLDivElement, RootProps>(
 Root.displayName = "CurrencyInput.Root";
 
 // 2. Max Button Prefix
-export interface MaxButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{className: string};
+export type MaxButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const MaxButton = (
-  ({ className, ...props }: MaxButtonProps, ref) => {
+const MaxButton = React.forwardRef<HTMLButtonElement, MaxButtonProps>(
+  ({ className, ...props }, ref) => {
     const { onMax, disabled } = useCurrencyInput();
 
     if (!onMax) return null;
@@ -157,10 +157,15 @@ const MaxButton = (
     );
   }
 );
+
+// This will now compile perfectly because React.forwardRef returns a component object that accepts a displayName
 MaxButton.displayName = "CurrencyInput.MaxButton";
 
 // 3. Actual Numeric Input Field
-export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange">;
+export type InputProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "value" | "onChange"
+>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {

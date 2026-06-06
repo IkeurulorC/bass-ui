@@ -100,6 +100,22 @@
   --toast-error-bg: var(--color-rose-50);
   --toast-error-border: var(--color-rose-200);
   --toast-error-text: var(--color-rose-900);
+
+  /* Data Table */
+  --table-canvas: var(--color-gray-50); /* #f9fafb */
+  --table-bg: var(--color-white); /* #ffffff */
+  --table-header-bg: var(--color-gray-50); /* #f9fafb */
+  --table-header-text: var(--color-gray-500); /* #6b7280 */
+  --table-body-text: var(--color-gray-900); /* #111827 */
+  --table-border: var(--color-gray-100); /* #f3f4f6 */
+  --table-hover: var(--color-gray-50); /* #f9fafb */
+  --table-skeleton: var(--color-gray-200); /* #e5e7eb */
+  --table-accent-green: var(
+    --color-emerald-600
+  ); /* #059669 (Close match to #009652) */
+  --table-accent-purple: var(
+    --color-violet-600
+  ); /* #7c3aed (Close match to #635bff) */
 }
 
 .dark {
@@ -189,6 +205,20 @@
   --toast-error-bg: color-mix(in srgb, var(--color-rose-950), transparent 20%);
   --toast-error-border: var(--color-rose-800);
   --toast-error-text: var(--color-rose-200);
+
+  /* Data Table */
+  --table-canvas: var(--color-zinc-950);
+  --table-bg: var(--color-slate-900);
+  --table-header-bg: var(--color-zinc-950);
+  --table-header-text: var(--color-slate-400);
+  --table-body-text: var(--color-slate-100);
+  --table-border: var(--color-slate-800);
+
+  --table-hover: color-mix(in srgb, var(--color-indigo-950), transparent 40%);
+  --table-skeleton: var(--color-slate-800);
+
+  --table-accent-green: var(--color-emerald-400);
+  --table-accent-purple: var(--color-indigo-400);
 }
 
 @theme {
@@ -306,6 +336,18 @@
   --color-toast-error-bg: var(--toast-error-bg);
   --color-toast-error-border: var(--toast-error-border);
   --color-toast-error-text: var(--toast-error-text);
+
+  /* Data Table */
+  --color-table-bg: var(--table-bg);
+  --color-table-canvas: var(--table-canvas);
+  --color-table-header-bg: var(--table-header-bg);
+  --color-table-header-text: var(--table-header-text);
+  --color-table-body-text: var(--table-body-text);
+  --color-table-border: var(--table-border);
+  --color-table-hover: var(--table-hover);
+  --color-table-skeleton: var(--table-skeleton);
+  --color-table-accent-green: var(--table-accent-green);
+  --color-table-accent-purple: var(--table-accent-purple);
 }
 
 /* --- Modal Reset & Base --- */
