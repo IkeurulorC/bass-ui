@@ -1,0 +1,127 @@
+Let's wire up the header sorting arrows and data alignments next. This will complete the raw functionality of the engine, ensuring that when we *do* dive into the styling, our classes are hooking into live, reactive elements.
+
+To achieve this, we need to make two updates:
+
+1. Update your **Column Definitions** (`columns`) to handle column text alignment and enable sorting triggers.
+2. Update your **Main Table Header** (`data-table.tsx`) to render clickable sort arrows that respond to the active sorting state.
+
+---
+
+### 1. The Column Definition Upgrades
+
+When defining your columns, you can pass specific layout behaviors directly into the `header` and `cell` parameters. Here is how you configure left vs. right alignments and add sorting toggle commands:
+
+```tsx
+// Inside your column definition array:
+const columns: ColumnDef<CryptoAsset>[] = [
+  {
+    accessorKey: "name",
+    // Standard left-aligned text for text-heavy metadata
+    header: "Assets", 
+    cell: ({ row }) => (
+      <div className="flex flex-col">
+        <span className="font-semibold">{row.original.name}</span>
+        <span className="text-xs text-table-header-text uppercase">{row.original.symbol}</span>
+      </div>
+    ),
+  },
+  {
+    accessorKey: "price",
+    // 💡 ALIGNMENT WIN: Right-align headers and cells for financial metrics
+    header: () => <div className="text-right">Price</div>,
+    cell: ({ getValue }) => (
+      <div className="text-right font-semibold">
+        ${getValue().toLocaleString()}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "change24h",
+    header: ({ column }) => (
+      // 💡 SORTING WIN: Turn the header into a clickable sorting trigger
+      <div className="text-right">
+        <button 
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="inline-flex items-center gap-1 hover:text-table-body-text cursor-pointer"
+        >
+          24h Change
+          {/* We will render the dynamic indicator right here */}
+          <SortIcon isSorted={column.getIsSorted()} />
+        </button>
+      </div>
+    ),
+    cell: ({ getValue }) => {
+      const val = getValue();
+      return (
+        <div className={`text-right ${val < 0 ? "text-rose-500" : "text-emerald-500"}`}>
+          {val < 0 ? "▼" : "▲"} {Math.abs(val)}%
+        </div>
+      );
+    },
+  },
+];
+
+```
+
+---
+
+### 2. Upgrading the Main Table Header (`data-table.tsx`)
+
+If a developer wants a column to be globally sortable without manually attaching custom click handlers to every individual column definition, you can handle it generically right inside your `<thead>` block.
+
+Update your loop inside `data-table.tsx` to include an automatic click interceptor and dynamic sorting arrow indicator:
+
+```tsx
+<thead className="bg-table-header-bg border-b border-table-border">
+  {table.getHeaderGroups().map((headerGroup) => (
+    <tr key={headerGroup.id}>
+      {headerGroup.headers.map((header) => {
+        // Check if this specific column allows sorting
+        const canSort = header.column.getCanSort();
+        const isSorted = header.column.getIsSorted();
+
+        return (
+          <th
+            key={header.id}
+            style={{ width: `${header.getSize()}px` }}
+            className={`px-6 py-4 font-semibold text-table-header-text text-xs tracking-wider first:pl-8 last:pr-8
+              ${canSort ? "select-none" : ""}
+            `}
+          >
+            {header.isPlaceholder ? null : (
+              <div
+                className={`flex items-center gap-1.5
+                  ${canSort ? "cursor-pointer hover:text-table-body-text" : ""}
+                  ${header.column.columnDef.meta?.align === "right" ? "justify-end" : "justify-start"}
+                `}
+                onClick={header.column.getToggleSortingHandler()} // ◄ TanStack automatic sorting hook
+              >
+                {flexRender(header.column.columnDef.header, header.getContext())}
+                
+                {/* Visual state indicator arrow */}
+                {canSort && (
+                  <span className="transition-transform duration-150">
+                    {isSorted === "asc" && " 🔼"}
+                    {isSorted === "desc" && " 🔽"}
+                    {!isSorted && " ↕️"}
+                  </span>
+                )}
+              </div>
+            )}
+          </th>
+        );
+      })}
+    </tr>
+  ))}
+</thead>
+
+```
+
+---
+
+### ⚙️ Why this completes the layout loop
+
+* **`header.column.getToggleSortingHandler()`**: Clicking the header text now triggers TanStack's engine to instantly re-sort your client-side data data array, or bubble the updated `SortingState` context up to your parent component for server-side fetches.
+* **Alignment Uniformity**: Because the headers use identical layout alignments (`justify-end` / `text-right`) as the child `<td>` elements, your numbers and symbols form perfectly parallel vertical data lines.
+
+Once you drop this logic in, your dashboard functionality is completely locked down and interactive. Ready to unleash Tailwind and bring on that cyberpunk-neon layout transformation?

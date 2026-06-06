@@ -13,7 +13,7 @@ const StatContainerVariants = cva(
     variants: {
       size: {
         sm: "flex flex-col gap-1 p-4 rounded-xl",
-        md: " grid grid-cols-1 gap-1 px-5 pt-2 rounded-2xl",
+        md: " flex flex-col gap-1 px-5 pt-2 rounded-2xl",
         lg: "relative flex flex-col p-6 rounded-2xl shadow-sm",
       },
     },
