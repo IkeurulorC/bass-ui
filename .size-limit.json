@@ -1,0 +1,8 @@
+[
+  {
+    "path": "packages/ui/dist/index.js",
+    "limit": "20 KB",
+    "webpack": false,
+    "skipWithEmptyFile": true
+  }
+]

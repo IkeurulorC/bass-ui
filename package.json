@@ -6,15 +6,22 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "check-types": "turbo run check-types",
+    "change": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && changeset publish",
+    "size": "size-limit"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@size-limit/preset-big-lib": "^12.1.0",
     "eslint-config-prettier": "^10.1.1",
     "prettier": "^3.7.4",
+    "size-limit": "^12.1.0",
     "turbo": "^2.9.6",
     "typescript": "5.9.2"
   },
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@11.5.1",
   "engines": {
     "node": ">=18"
   }
