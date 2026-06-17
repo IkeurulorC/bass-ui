@@ -1,0 +1,49 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import {
+  CurrencyInputProps,
+  CurrencyInputRootProps,
+  CurrencyInputMaxButtonProps,
+  CurrencyInputDropdownProps,
+} from "./Tables.tsx";
+
+<Meta title="Primitive/CurrencyInput" />
+
+# CurrencyInput
+
+The CurrencyInput component is a robust primitive that can be uesd for any fintech application where financial accuracy and user confidence are of utmost importance. By abstracting away the complex logic of decimal handling, comma formatting, and input sanitization, it ensures that your application consistently manages numerical data without the risk of floating-point errors or malformed currency strings. It offers you a standardized interface for your users which prevents cognitive overload while enforcing strict formatting, decimal placement, and accessibility guardrails.
+
+## Design Choices & Rationale
+
+- **Controlled Float Management:** Unlike standard inputs, this primitive processes inputs as a localized string state to avoid floating-point math errors before passing the sanitised float back up to the parent application schema.
+- **Layout Constraints:** The layout explicitly maps currency symbols as un-selectable visual indicators to prevent users from accidentally copying symbols into native system clipboards.
+
+## Usage Guidelines
+
+- **Do:** Use this in transaction flows, checkout funnels, and wire-transfer configurations where localized currencies require explicit decimal control.
+- **Don't:** Use this for standard numerical entries (like quantities, counts, or IDs) that do not require financial currency rounding criteria.
+
+## Props Reference
+
+### Root
+
+The body of the component where all other sub-components live
+
+<CurrencyInputRootProps />
+
+### MaxButton
+
+The max button runs the onMax function when clicked
+
+<CurrencyInputMaxButtonProps />
+
+### Input
+
+The actual input field for the component
+
+<CurrencyInputMaxButtonProps />
+
+### Dropdown
+
+The dropdown subcomponent is used for selecting a currency value
+
+<CurrencyInputDropdownProps />

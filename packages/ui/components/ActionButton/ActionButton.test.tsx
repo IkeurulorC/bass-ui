@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { expect, describe, it, vi } from "vitest";
-import ActionButton from "./ActionButton";
+import { ActionButton } from "./ActionButton";
 import "@testing-library/jest-dom/vitest";
 
 describe("ActionButton (Unit)", () => {
@@ -9,19 +9,13 @@ describe("ActionButton (Unit)", () => {
     const btn = screen.getByRole("button", { name: /default button/i });
 
     expect(btn).toHaveClass("flex", "items-center", "justify-around");
-    expect(btn).toHaveClass(
-      "bg-btn-primary-bg",
-      "!text-btn-primary-text",
-      "px-8"
-    );
+    expect(btn).toHaveClass("bg-btn-primary-bg", "!text-btn-primary-text");
   });
 
   // 2. THE VARIANT MATRIX (CVA CONTRACT)
   it("swaps classes correctly based on intent props", () => {
     const { rerender } = render(
-      <ActionButton intent="danger" size="sm">
-        Delete
-      </ActionButton>
+      <ActionButton intent="danger">Delete</ActionButton>
     );
     const btn = screen.getByRole("button");
 

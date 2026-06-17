@@ -1,0 +1,26 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { AssetCardProps } from "./Tables.tsx";
+
+<Meta title="Primitive/AssetCard" />
+
+# AssetCard
+
+The AssetCard component is a specialized container primitive built to surface key financial metrics at a glance. By standardizing the display of asset identification, real-time pricing, and performance indicators, it ensures that your application provides a consistent, scannable data visualization layer across portfolio dashboards and asset lists. It effectively reduces cognitive load by abstracting complex data-mapping into a clean, modular component that maintains visual integrity across varying device sizes.
+
+## Design Choices & Rationale
+
+## Usage Guidelines
+
+- Do: Use this in dashboard grids, portfolio summaries, and asset selection lists where users need to compare performance metrics rapidly.
+
+- Do: Use semantic color logic for change24h (green for positive, red for negative) to leverage visual pattern recognition.
+
+- Don't: Use this for complex data tables; if the data requires sorting, filtering, or deep row-by-row comparisons, use the DataTable component instead.
+
+- Don't: Crowd the card with excessive metadata; the AssetCard is designed for high-level information density only.
+
+### Props Reference
+
+The AssetCard is built and therefore is assembled using the Compound Component Pattern. Each sub-component receives a className, children, as well as any props of their base element (should they have one). You can check in the table below:
+
+<AssetCardProps />

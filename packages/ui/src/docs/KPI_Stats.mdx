@@ -1,0 +1,22 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { StatsProps } from "./Tables.tsx";
+
+<Meta title="Primitive/KPI Stats" />
+
+# KPI Stats
+
+The Stat component is a high-density information display primitive. It is designed to surface critical performance metrics, account summaries, or real-time analytical data within a visually distinct "stat card." By combining an animated numeric counter with contextual labels and trend indicators, it provides users with immediate, glanceable insights while maintaining a premium aesthetic.
+
+## Design Choices & Rationale
+
+- **Controlled Float Management:** Unlike standard inputs, this primitive processes inputs as a localized string state to avoid floating-point math errors before passing the sanitised float back up to the parent application schema.
+- **Layout Constraints:** The layout explicitly maps currency symbols as un-selectable visual indicators to prevent users from accidentally copying symbols into native system clipboards.
+
+## Usage Guidelines
+
+- **Do:** Use this in transaction flows, checkout funnels, and wire-transfer configurations where localized currencies require explicit decimal control.
+- **Don't:** Use this for standard numerical entries (like quantities, counts, or IDs) that do not require financial currency rounding criteria.
+
+### Stat Component API
+
+<StatsProps />

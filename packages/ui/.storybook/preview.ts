@@ -24,7 +24,7 @@ const preview: Preview = {
           {
             // This disables the "aria-hidden-focus" rule only for Radix guards
             id: "aria-hidden-focus",
-            selector: "*:not([data-radix-focus-guard])",
+            selector: "body:not(.sb-show-main) *:not([data-radix-focus-guard])",
           },
         ],
       },

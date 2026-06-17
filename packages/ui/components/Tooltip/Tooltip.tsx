@@ -1,33 +1,8 @@
 import React from "react";
 import * as Tooltip from "@radix-ui/react-tooltip";
-import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "../../src/utils";
 
-const tooltipVariants = cva(
-  "rounded-md transition-opacity duration-300 filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.1)] shadow-[0_-1px_0_rgba(0,0,0,0.05),0_4px_12px_rgba(0,0,0,0.1)] bg-surface-card text-text-primary text-center",
-  {
-    variants: {
-      size: {
-        sm: "px-1.5 py-1.5 text-xs max-w-[180px]",
-        md: "px-3 py-3 text-sm max-w-[280px]",
-        lg: "px-3 py-3 text-base max-w-[320px]",
-      },
-    },
-    defaultVariants: {
-      size: "lg",
-    },
-  }
-);
-
-function ToolTipTrigger({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
-}
-
-function ToolTipChildren({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
-}
-
-interface ToolTipProps extends VariantProps<typeof tooltipVariants> {
+interface ToolTipProps {
   header?: React.ReactNode;
   trigger?: React.ReactNode;
   children?: React.ReactNode;
@@ -39,39 +14,40 @@ export const ToolTip = ({
   trigger,
   children,
   className,
-  size,
-  ...props // Capture Radix-specific props like 'side' or 'align'
+  ...props
 }: ToolTipProps & Tooltip.TooltipProps) => {
   return (
-    <Tooltip.Provider delayDuration={0}>
+    <Tooltip.Provider delayDuration={200}>
       <Tooltip.Root {...props}>
-        <ToolTipTrigger>
-          <Tooltip.Trigger asChild>
-            {React.isValidElement(trigger) ? trigger : <span>{trigger}</span>}
-          </Tooltip.Trigger>
-        </ToolTipTrigger>
+        <Tooltip.Trigger asChild>
+          {React.isValidElement(trigger) ? trigger : <span>{trigger}</span>}
+        </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            sideOffset={8}
-            className={cn(tooltipVariants({ size }), className)}
+            sideOffset={5}
+            className={cn(
+              "z-50 overflow-hidden rounded-md border border-zinc-200 bg-white px-2 py-1 text-[10px] md:px-3 md:py-1.5 md:text-xs lg:px-4 lg:py-2 lg:text-sm text-zinc-950 shadow-md animate-in fade-in-0 zoom-in-95 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50",
+              className
+            )}
           >
             {header && (
-              <header className="font-bold border-b border-[var(--tooltip-border)] mb-1.5 pb-1">
+              <div className="mb-1 font-semibold border-b border-zinc-100 dark:border-zinc-800 pb-1">
                 {header}
-              </header>
+              </div>
             )}
-            {children && (
-              <ToolTipChildren>
-                <main className="text-pretty">{children}</main>
-              </ToolTipChildren>
-            )}
-            <Tooltip.Arrow className="fill-surface-card h-3 w-5 " />
+            {children}
+            {/* The arrow is pulled up by 2px (-mt-[2px]) and given a width 
+              to ensure it overlaps the border area cleanly. 
+              The fill matches the background, and we omit any border on the arrow itself.
+            */}
+            <Tooltip.Arrow
+              className="fill-white dark:fill-zinc-950 -mt-[2px]"
+              width={12}
+              height={6}
+            />
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>
     </Tooltip.Provider>
   );
 };
-
-ToolTip.Trigger = ToolTipTrigger;
-ToolTip.Children = ToolTipChildren;

@@ -12,6 +12,7 @@ import { fileURLToPath } from "url";
 function getAbsolutePath(value: string) {
   return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
 }
+
 const config: StorybookConfig = {
   stories: [
     "../components/**/*.stories.tsx",
@@ -26,10 +27,25 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-themes"),
     getAbsolutePath("@storybook/addon-onboarding"),
   ],
-  framework: getAbsolutePath("@storybook/react-vite"),
+  framework: getAbsolutePath(
+    "@storybook/react-vite"
+  ) as "@storybook/react-vite",
   viteFinal: async (config) => {
     config.plugins?.push(tailwindcss());
+
+    // Forcefully deduplicate React to prevent double-bundle useState errors
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        react: getAbsolutePath("react"),
+        "react-dom": getAbsolutePath("react-dom"),
+      },
+      dedupe: ["react", "react-dom"],
+    };
+
     return config;
   },
 };
+
 export default config;

@@ -1,9 +1,8 @@
-import React from "react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { PriceTicker, TickerAsset } from "./PriceTicker";
 
-// Mock framer-motion to prevent loop animation side-effects during testing
+// Mock framer-motion cleanly without relying on hoisted external React objects
 vi.mock("framer-motion", () => ({
   motion: {
     div: ({
@@ -11,7 +10,7 @@ vi.mock("framer-motion", () => ({
       ...props
     }: {
       children: React.ReactNode;
-      props: React.HTMLAttributes<HTMLDivElement>;
+      [key: string]: unknown;
     }) => <div {...props}>{children}</div>,
   },
   AnimatePresence: ({ children }: { children: React.ReactNode }) => (

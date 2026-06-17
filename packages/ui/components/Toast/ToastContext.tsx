@@ -50,7 +50,11 @@ export const ToastProvider = ({
             key={id}
             {...toastProps}
             onOpenChange={(open) => {
-              if (!open) removeToast(id);
+              toastProps.onOpenChange?.(open);
+              if (!open) {
+                // A small delay matching your CSS exit transition duration (e.g., 200ms)
+                setTimeout(() => removeToast(id), 200);
+              }
             }}
           />
         ))}

@@ -1,0 +1,46 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ToggleProps, CheckBoxProps } from "./Tables.tsx";
+
+<Meta title="Primitive/Toggle  & CheckBox" />
+
+# Toggle/CheckBox
+
+The Toggle (Switch) and CheckBox are your application's fundamental boolean input primitives. By wrapping Radix UI primitives with framer-motion and class-variance-authority (CVA), you have created responsive, animated, and accessible input fields that maintain a consistent UX across mobile, tablet, and desktop viewports.
+
+## Design Choices & Rationale
+
+- Responsive Sizing: Both components use CVA variants to scale their dimensions across breakpoints (sm to lg). This ensures the hit area is touch-friendly on mobile devices while remaining proportional on desktop interfaces.
+
+* **Physics-Based Animation:**
+  - The Toggle uses a spring-based transition (stiffness: 500, damping: 30) on the thumb, providing a tactile, high-quality "click" feel.
+  - The CheckBox uses an AnimatePresence and spring-scale animation for the indicator icon, making the checkmark appear to "pop" into the box rather than simply toggling visibility
+
+- Neumorphic Influence: The CheckBox utilizes specific inset box-shadows (inset 2px 2px 4px #bebebe...) to create depth, distinguishing it from flatter UI elements and reinforcing its interactive state.
+
+- Accessibility: Both components utilize asChild patterns with Radix to ensure that the actual interactive element is properly associated with labels and states, ensuring full keyboard and screen reader support.
+
+## Usage Guidelines
+
+- Do: Use Toggle for settings that take effect immediately when changed.
+
+- Do: Use CheckBox for elements that are part of a form submission or a list where the user needs to select multiple items.
+
+- Don't: Swap the two. A user expects a checkbox to be part of a selection process and a toggle to be a binary "on/off" switch for a feature or setting.
+
+- Don't: Forget the aria-label on CheckBox if you are using it in a table or a header without a visible text label nearby.
+
+### Props Reference
+
+#### Toggle Props
+
+<ToggleProps />
+
+#### CheckBox Props
+
+<CheckBoxProps />
+
+### Developer Implementation Tip
+
+To ensure the CheckBox shadow looks correct in both modes, remember to define the light-mode box-shadow explicitly and consider adding a dark: variant to the className if your dashboard supports dark mode, as the inset shadow logic relies on contrast between light and dark colors.
+
+Would you like me to add a loading state to the Toggle component to prevent user interaction while a settings change is syncing with your backend?

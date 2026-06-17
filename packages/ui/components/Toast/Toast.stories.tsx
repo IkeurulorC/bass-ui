@@ -1,6 +1,6 @@
 import { ToastProvider, useToast } from "./ToastContext";
 import { ToastProps, ToastProviderProps } from "./ToastQueue";
-import ActionButton from "../ActionButton/ActionButton";
+import { ActionButton } from "../ActionButton/ActionButton";
 
 // A small wrapper to trigger the toast in Storybook
 const ToastTrigger = (args: ToastProps) => {
@@ -36,7 +36,7 @@ const ToastScenario = ({
 );
 
 export default {
-  title: "Components/Toast",
+  title: "Overlays/Toast",
   component: ToastScenario,
   tags: ["autodocs"],
 };

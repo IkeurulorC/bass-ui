@@ -1,86 +1,26 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../src/utils";
-import { Command } from "cmdk";
+import { Command, useCommandState } from "cmdk";
 
-const CommandBarContainerVariants = cva(
-  "flex flex-col overflow-hidden rounded-xl bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 border border-zinc-200 dark:border-zinc-800 shadow-lg gap-4",
-  {
-    variants: {
-      size: {
-        sm: "w-md",
-        md: "w-xl",
-        lg: "w-3xl",
-      },
-    },
-    defaultVariants: {
-      size: "lg",
-    },
-  }
-);
-
-const CommandInputVariants = cva(
-  "flex bg-transparent py-3 outline-none disabled:cursor-not-allowed disabled:opacity-50",
-  {
-    variants: {
-      size: {
-        sm: "h-9 text-xs px-2 w-md",
-        md: "h-11 text-sm px-3 w-xl",
-        lg: "h-14 text-base px-4 w-3xl",
-      },
-    },
-    defaultVariants: {
-      size: "lg",
-    },
-  }
-);
-
-const CommandListVariants = cva(
-  "absolute top-20 z-50 w-full max-h-[300px] overflow-y-auto overflow-x-hidden rounded-xl border border-zinc-200 bg-white p-2 text-zinc-950 shadow-xl dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50",
-  {
-    variants: {
-      size: {
-        sm: "text-xs px-2 w-md",
-        md: "text-sm px-3 w-xl",
-        lg: "text-base px-4 w-3xl",
-      },
-    },
-    defaultVariants: {
-      size: "lg",
-    },
-  }
-);
-
-const CommandGroupVariants = cva(
-  "flex w-full cursor-pointer items-center justify-between select-none font-medium overflow-hidden p-1 text-sm text-zinc-950 dark:text-zinc-50 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-zinc-500 dark:[&_[cmdk-group-heading]]:text-zinc-400",
-  {
-    variants: {
-      size: {
-        sm: "[&_[cmdk-group-heading]]:px-2",
-        md: "[&_[cmdk-group-heading]]:px-3",
-        lg: "  [&_[cmdk-group-heading]]:px-4",
-      },
-    },
-    defaultVariants: {
-      size: "lg",
-    },
-  }
-);
-
-export interface CommandBarContainerProps
-  extends
-    Omit<React.HTMLAttributes<HTMLDivElement>, "value" | "defaultValue">,
-    VariantProps<typeof CommandBarContainerVariants> {}
+export interface CommandBarContainerProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  "value" | "defaultValue"
+> {
+  className?: string;
+}
 
 // Wrapped in forwardRef so the underlying engine can do its measurements safely
 export const CommandBarContainer = React.forwardRef<
   React.ComponentRef<typeof Command>,
   CommandBarContainerProps
->(({ className, size, children, ...props }, ref) => {
+>(({ className, children, ...props }, ref) => {
   return (
     <Command
       ref={ref}
-      className={cn(CommandBarContainerVariants({ size }), className)}
+      className={cn(
+        "relative flex flex-col overflow-visible rounded-4xl bg-white dark:bg-zinc-900/90 text-zinc-950 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)] backdrop-blur-md w-md md:w-xl lg:w-3xl custom-crypto-glow",
+        className
+      )}
       {...props}
     >
       {children}
@@ -88,37 +28,50 @@ export const CommandBarContainer = React.forwardRef<
   );
 });
 
-export interface CommandInputProps
-  extends
-    Omit<React.ComponentPropsWithoutRef<typeof Command.Input>, "size">,
-    VariantProps<typeof CommandInputVariants> {}
+export interface CommandInputProps extends Omit<
+  React.ComponentPropsWithoutRef<typeof Command.Input>,
+  "size"
+> {
+  className?: string;
+}
 
 export const CommandInput = React.forwardRef<
   React.ComponentRef<typeof Command.Input>,
   CommandInputProps
->(({ className, size, ...props }, ref) => {
+>(({ className, ...props }, ref) => {
   return (
     <Command.Input
       ref={ref}
-      className={cn(CommandInputVariants({ size }), className)}
+      className={cn(
+        "flex w-full bg-transparent mx-3 py-4 outline-none placeholder-zinc-500 disabled:cursor-not-allowed disabled:opacity-50 h-10 text-xs px-3 font-medium md:h-12 md:text-sm md:px-4 lg:h-14 lg:text-base lg:px-5 transition-all duration-200",
+        className
+      )}
       {...props}
     />
   );
 });
 
-export interface CommandListProps
-  extends
-    React.ComponentPropsWithoutRef<typeof Command.List>,
-    VariantProps<typeof CommandListVariants> {}
+export interface CommandListProps extends React.ComponentPropsWithoutRef<
+  typeof Command.List
+> {
+  className?: string;
+}
 
 export const CommandList = React.forwardRef<
   React.ComponentRef<typeof Command.List>,
   CommandListProps
 >(({ className, children, ...props }, ref) => {
+  const search = useCommandState((state) => state.search);
+
+  const hasQuery = search.trim().length > 0;
   return (
     <Command.List
       ref={ref}
-      className={cn(CommandListVariants(), className)}
+      className={cn(
+        "absolute top-20 z-50 w-full max-h-[300px] overflow-y-auto overflow-x-hidden rounded-xl border border-zinc-200 bg-white p-2 shadow-xl dark:border-zinc-800 dark:bg-zinc-950 text-zinc-950 dark:text-zinc-50 text-xs px-2 w-md md:text-sm md:px-3 md:w-xl lg:text-base lg:px-4 lg:w-3xl",
+        !hasQuery && "hidden",
+        className
+      )}
       {...props}
     >
       {children}
@@ -149,7 +102,6 @@ export interface CommandGroupContainerProps extends Omit<
 > {
   heading: string; // Enforce heading as a string prop so we can style the click target
   defaultExpanded?: boolean;
-  size?: "sm" | "md" | "lg";
 }
 
 export const CommandGroup = React.forwardRef<
@@ -157,7 +109,7 @@ export const CommandGroup = React.forwardRef<
   CommandGroupContainerProps
 >(
   (
-    { className, heading, children, size, defaultExpanded = false, ...props },
+    { className, heading, children, defaultExpanded = false, ...props },
     ref
   ) => {
     // 1. Keep track of whether this specific section is open or closed
@@ -169,7 +121,12 @@ export const CommandGroup = React.forwardRef<
         heading={
           <div
             onClick={() => setIsExpanded(!isExpanded)}
-            className={cn(CommandGroupVariants({ size }))}
+            className={cn(
+              "overflow-hidden p-1 text-zinc-950 dark:text-zinc-100",
+              "flex w-full cursor-pointer items-center justify-between",
+              "[&_[cmdk-group-heading]]:select-none [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.12em] [&_[cmdk-group-heading]]:text-zinc-500",
+              className
+            )}
           >
             <span>{heading}</span>
             <span className="text-[10px] opacity-60">
@@ -201,7 +158,7 @@ export const CommandItem = React.forwardRef<
   <Command.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 mt-0.5 mb-0 text-sm outline-none data-[selected=true]:text-zinc-900 data-[disabled=true]:opacity-50 dark:data-[selected=true]:text-zinc-50 border-t border-zinc-100 dark:border-zinc-900",
+      "relative flex cursor-pointer select-none items-center rounded-xl px-3 py-2.5 mt-1 text-zinc-300 font-medium transition-all duration-150 outline-none data-[selected=true]:bg-white/[0.06] data-[selected=true]:text-white data-[selected=true]:translate-x-0.5 data-[disabled=true]:opacity-40",
       className
     )}
     {...props}

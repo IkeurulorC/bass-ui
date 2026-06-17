@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 
 export interface TickerAsset {
   id: string;
@@ -10,7 +9,7 @@ export interface TickerAsset {
   change24h: number;
 }
 
-interface PriceTickerProps {
+export interface PriceTickerProps {
   assets: TickerAsset[];
   variant?: "marquee" | "stack";
   speed?: number; // Duration in seconds for marquee loop
@@ -111,7 +110,7 @@ const TickerItem = ({ asset, layout }: TickerItemProps) => {
           {asset.symbol}
         </span>
         {layout === "stack" && (
-          <span className="md:text-xs md:text-gray-500 md:font-medium hidden md:inline">
+          <span className="md:text-xs md:text-zinc-400 md:font-medium hidden md:inline">
             {asset.name}
           </span>
         )}
@@ -141,9 +140,37 @@ const TickerItem = ({ asset, layout }: TickerItemProps) => {
           }`}
         >
           {isPositive ? (
-            <ArrowUpRight className="mr-0.5 h-3.5 w-3.5" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mr-0.5 h-3.5 w-3.5 lucide lucide-arrow-up-right-icon lucide-arrow-up-right"
+            >
+              <path d="M7 7h10v10" />
+              <path d="M7 17 17 7" />
+            </svg>
           ) : (
-            <ArrowDownRight className="mr-0.5 h-3.5 w-3.5" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mr-0.5 h-3.5 w-3.5 lucide lucide-arrow-down-right-icon lucide-arrow-down-right"
+            >
+              <path d="m7 7 10 10" />
+              <path d="M17 7v10H7" />
+            </svg>
           )}
           {Math.abs(asset.change24h).toFixed(2)}%
         </span>

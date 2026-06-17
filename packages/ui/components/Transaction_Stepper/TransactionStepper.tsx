@@ -38,14 +38,14 @@ const StepIcon = ({ status, index }: { status: StepStatus; index: number }) => {
       );
     case "FAILED":
       return (
-        <div className={`${baseClasses} border-red-500 bg-red-50 text-red-600`}>
+        <div className={`${baseClasses} border-red-500 bg-red-50 text-red-400`}>
           ✕
         </div>
       );
     case "PENDING":
     default:
       return (
-        <div className={`${baseClasses} border-gray-300 text-gray-400`}>
+        <div className={`${baseClasses} border-gray-300 text-gray-500`}>
           {index + 1}
         </div>
       );
@@ -77,9 +77,13 @@ export const TransactionStepper: React.FC<TransactionStepperProps> = ({
               {index > 0 && (
                 <div
                   className={`absolute top-4 right-[50%] left-[-50%] h-0.5 transition-all duration-500 ${
-                    steps[index - 1].status === "SUCCESS"
+                    steps[index]?.status === "SUCCESS"
                       ? "bg-green-500"
-                      : "bg-gray-200"
+                      : steps[index]?.status === "FAILED"
+                        ? "bg-red-400"
+                        : steps[index - 1]?.status === "SUCCESS"
+                          ? "bg-green-500"
+                          : "bg-gray-200"
                   }`}
                 />
               )}
@@ -97,13 +101,13 @@ export const TransactionStepper: React.FC<TransactionStepperProps> = ({
                         ? "text-gray-800"
                         : isFailed
                           ? "text-red-600"
-                          : "text-gray-400"
+                          : "text-gray-500"
                   }`}
                 >
                   {step.label}
                 </p>
                 {step.description && (
-                  <p className="text-xs text-gray-400 mt-0.5 max-w-[120px] mx-auto">
+                  <p className="text-xs text-gray-500 mt-0.5 max-w-[120px] mx-auto">
                     {step.description}
                   </p>
                 )}

@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { PriceTickerProps } from "./Tables.tsx";
+
+<Meta title="Primitive/PriceTicker" />
+
+# PriceTicker
+
+The PriceTicker is a high-performance data visualization primitive designed to display real-time asset pricing. It leverages reactive programming to provide visual feedback on price volatility—specifically using "flash" animations to indicate price movement direction—which is essential for traders who need to interpret market sentiment at a glance.
+
+## Design Choices & Rationale
+
+- Reactive Flash Engine: The TickerItem tracks price changes using a useRef to maintain a persistent reference to the previous price. When an update is detected, it triggers a CSS animation class (flash-green or flash-red).
+
+- Seamless Infinite Marquee: To achieve a smooth marquee without visual jumps, the component triples the asset array ([...assets, ...assets, ...assets]). This provides enough buffer for the framer-motion animation to loop back to the start without the user noticing the reset.
+
+- Performance Optimization: The flash animation reset is wrapped in requestAnimationFrame to ensure the browser successfully clears and restarts the animation class, preventing stale states during rapid price updates.
+
+- Visual Fading: The marquee variant uses absolute positioned gradient overlays at the edges of the container. This ensures assets fade out smoothly rather than clipping abruptly at the boundaries of the viewport.
+
+## Usage Guidelines
+
+- Do: Use the marquee variant for secondary, "at-a-glance" tickers (e.g., at the top of a trading app). Use the stack variant for primary asset monitoring panels where readability of names and daily changes is prioritized.
+
+- Do: Provide high-frequency updates to the assets prop to make the flash animations meaningful.
+
+- Don't: Set the speed duration too low (e.g., < 10s) for the marquee; rapid scrolling can induce motion sickness and make the price information difficult to read.
+
+- Don't: Overload the marquee with too many assets. Limit the list to 5–8 items to ensure the content remains readable while in motion.
+
+## Props Reference
+
+<PriceTickerProps />

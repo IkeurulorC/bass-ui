@@ -1,0 +1,30 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { StatusBadgeProps } from "./Tables.tsx";
+
+<Meta title="Primitive/StatusBadge" />
+
+# StatusBadge
+
+The StatusBadge is a compact, intent-driven visual primitive used to communicate the state of asynchronous processes, resource health, or real-time connectivity. In fintech, clear status indication is critical for managing user expectations regarding trade execution, withdrawal processing, or account verification.
+
+## Design Choices & Rationale
+
+- Pulse Animation: The live status variant utilizes a CSS animate-ping utility on an absolute-positioned span. This creates a subtle ripple effect, providing a "heartbeat" indicator that makes it immediately obvious that a process is currently active or connected.
+
+- CVA (Class Variance Authority): Both the container (badgeVariants) and the icon wrapper (iconWrapperVariants) utilize CVA. This approach decouples the structural logic from the state-based styling, making it trivial to add new statuses (like archived or attention) in the future without modifying the component’s core markup.
+
+- Visual Hierarchy: The icon wrapper is visually distinct, ensuring that even if a user is color-blind, the combination of icon shape (check vs. alert triangle vs. clock) and animation behavior provides enough context to understand the state.
+
+## Usage Guidelines
+
+- Do: Use consistent status language. Reserve "Successful" for finalized states, "Pending" for in-progress operations, and "Failed" for errors that require user intervention.
+
+- Do: Use the live status for real-time telemetry, such as active trading sessions or connected WebSocket streams.
+
+- Don't: Change the color-coding schema. The semantic link (e.g., Green = Success, Red = Error) is a well-established pattern; deviating from it will confuse users.
+
+- Don't: Overuse badges in dense lists. If an entire table column is just status badges, consider if the information can be conveyed via color-coded text or icons alone to reduce visual clutter.
+
+### Props Reference
+
+<StatusBadgeProps />

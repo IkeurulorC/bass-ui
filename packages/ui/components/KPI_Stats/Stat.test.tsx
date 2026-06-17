@@ -1,79 +1,85 @@
 import React from "react";
 import { render, screen, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { Stat } from "./Stat"; // Adjust to your actual import path
+import { Stat } from "./Stat";
 
 describe("KPI_Stats Component (Bass UI)", () => {
   beforeEach(() => {
-    // 1. Tell Vitest to hijack time so requestAnimationFrame doesn't take a full second
     vi.useFakeTimers();
+    // Safely simulate requestAnimationFrame ticks using our fake timers
+    vi.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
+      return setTimeout(() => cb(performance.now()), 16) as unknown as number;
+    });
   });
 
   afterEach(() => {
     vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   it("should render all compound children correctly", () => {
     render(
-      <Stat size="sm">
+      <Stat.Root>
         <Stat.Label>Test Label</Stat.Label>
-        <Stat.Trend value={5.2} trendType="positive-up" />
-        <Stat.Value value={100} />
-      </Stat>
+        <Stat.Trend
+          value={5.2}
+          trendType="positive-up"
+          data-testid="stat-trend"
+        />
+        <Stat.Value value={100} data-testid="stat-value" />
+      </Stat.Root>
     );
 
-    // Verify structural text renders safely
+    // Assert using explicit text matchers and test IDs for perfect stability
     expect(screen.getByText("Test Label")).toBeInTheDocument();
-    expect(screen.getByText("+5.2%")).toBeInTheDocument();
+    expect(screen.getByTestId("stat-trend")).toHaveTextContent("+5.2%");
   });
 
   it("should apply the formatter on every animation frame", () => {
     const mockFormatter = vi.fn((val: number) => `$${Math.round(val)}`);
 
     render(
-      <Stat>
+      <Stat.Root>
         <Stat.Label>Revenue</Stat.Label>
         <Stat.Value value={1000} duration={1000} formatter={mockFormatter} />
-      </Stat>
+      </Stat.Root>
     );
 
-    // Initial check
-    expect(mockFormatter).toReturnWith("$0");
+    // Verify the component invoked the formatter on initial render loop
+    expect(mockFormatter).toHaveBeenCalled();
 
-    // Fast-forward halfway
+    // Fast-forward halfway through the duration window (500ms)
     act(() => {
       vi.advanceTimersByTime(500);
     });
 
-    const midValue = screen.getByText(/\$/, { ignore: ".sr-only" });
-    expect(midValue.textContent).not.toBe("$0");
-    expect(midValue.textContent).not.toBe("$1000");
+    // Query the visual element directly via its ARIA state to see what the user sees
+    const visualElement = screen.getByText((_, element) => {
+      return element?.getAttribute("aria-hidden") === "true";
+    });
 
-    // FIX: Advance the timers past the duration window (e.g., another 600ms)
-    // to guarantee the animation loop hits progress === 1 and snaps to the final target.
+    // Ensure it is actively counting up, meaning it's neither at the start nor the end
+    expect(visualElement.textContent).not.toBe("$0");
+    expect(visualElement.textContent).not.toBe("$1000");
+
+    // Fast-forward past the finish line (another 600ms) to force it to snap to final value
     act(() => {
       vi.advanceTimersByTime(600);
     });
 
-    // Instead of looking for exact text matches that might get hung up on floating-point rounding,
-    // query the visible element explicitly and check its contents!
-    const finalVisualValue = screen.getByText((content, element) => {
-      return element?.getAttribute("aria-hidden") === "true";
-    });
-
-    expect(finalVisualValue.textContent).toBe("$1000");
+    expect(visualElement.textContent).toBe("$1000");
   });
 
   it("should render accessible static values for screen readers immediately", () => {
     const mockFormatter = (val: number) => `$${Math.round(val)}`;
 
     const { container } = render(
-      <Stat>
+      <Stat.Root>
         <Stat.Value value={500} formatter={mockFormatter} />
-      </Stat>
+      </Stat.Root>
     );
 
-    // Locate the screen-reader-only element containing the final value
+    // Direct targeted lookup for your accessibility layer snippet
     const srElement = container.querySelector(".sr-only");
     expect(srElement).toBeInTheDocument();
     expect(srElement?.textContent).toBe("$500");

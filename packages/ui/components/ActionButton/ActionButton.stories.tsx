@@ -1,57 +1,131 @@
-import ActionButton from "./ActionButton";
+import type { Meta } from "@storybook/react-vite";
+import { ActionButton } from "./ActionButton";
+import { useState } from "react";
 
-export default {
-  title: "Components/ActionButton",
-  component: ActionButton,
+const meta: Meta<typeof ActionButton> = {
+  title: "Foundations/ActionButton",
   tags: ["autodocs"],
 };
 
-export const Primary = {
-  args: {
-    children: "Button",
-    intent: "primary",
-  },
+export default meta;
+
+export const Primary = () => {
+  const [loading, setLoading] = useState(false);
+  const handleLoading = () => {
+    setLoading(true);
+
+    // Simulate an asynchronous network request resolving after 2 seconds
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
+  return (
+    <ActionButton isLoading={loading} onClick={handleLoading} intent="primary">
+      Click To Submit
+    </ActionButton>
+  );
 };
-export const Secondary = {
-  args: {
-    children: "Button",
-    intent: "secondary",
-  },
+
+export const Secondary = () => {
+  const [loading, setLoading] = useState(false);
+  const handleLoading = () => {
+    setLoading(true);
+
+    // Simulate an asynchronous network request resolving after 2 seconds
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
+  return (
+    <ActionButton
+      isLoading={loading}
+      onClick={handleLoading}
+      intent="secondary"
+    >
+      Click To Submit
+    </ActionButton>
+  );
 };
-export const Danger = {
-  args: {
-    children: "Button",
-    intent: "danger",
-  },
+
+export const Ghost = () => {
+  const [loading, setLoading] = useState(false);
+  const handleLoading = () => {
+    setLoading(true);
+
+    // Simulate an asynchronous network request resolving after 2 seconds
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
+  return (
+    <ActionButton isLoading={loading} onClick={handleLoading} intent="ghost">
+      Click To Submit
+    </ActionButton>
+  );
 };
-export const Ghost = {
-  args: {
-    children: "Button",
-    intent: "ghost",
-  },
+
+export const Danger = () => {
+  const [loading, setLoading] = useState(false);
+  const handleLoading = () => {
+    setLoading(true);
+
+    // Simulate an asynchronous network request resolving after 2 seconds
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
+  return (
+    <ActionButton isLoading={loading} onClick={handleLoading} intent="danger">
+      Click To Submit
+    </ActionButton>
+  );
 };
-export const Disabled = {
-  args: {
-    children: "Button",
-    isDisabled: true,
-  },
+
+export const Disabled = () => {
+  return <ActionButton isDisabled={true}>Click To Submit</ActionButton>;
 };
-export const Medium = {
-  args: {
-    size: "md",
-    children: "Button",
-  },
+
+export const Full = () => {
+  const [loading, setLoading] = useState(false);
+  const handleLoading = () => {
+    setLoading(true);
+
+    // Simulate an asynchronous network request resolving after 2 seconds
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
+  return (
+    <ActionButton
+      size="full"
+      isLoading={loading}
+      onClick={handleLoading}
+      intent="primary"
+    >
+      Click To Submit
+    </ActionButton>
+  );
 };
-export const Small = {
-  args: {
-    size: "sm",
-    children: "Contact me",
-  },
-};
-export const Styled = {
-  args: {
-    className:
-      "flex flex-none grow-0 flex-row items-center justify-center gap-[10px] rounded-[4px] border-none bg-indigo-500 px-10 py-[10px] font-sans text-sm font-semibold not-italic text-white min-w-min",
-    children: "Discard",
-  },
+
+export const Styled = () => {
+  const [loading, setLoading] = useState(false);
+  const handleLoading = () => {
+    setLoading(true);
+
+    // Simulate an asynchronous network request resolving after 2 seconds
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
+  return (
+    <ActionButton
+      className="flex flex-none grow-0 flex-row items-center justify-center gap-[10px] rounded-[4px] border-none bg-indigo-500 px-10 py-[10px] fon
+    )t-sans text-sm font-semibold not-italic text-white min-w-min"
+      isLoading={loading}
+      onClick={handleLoading}
+      intent="primary"
+    >
+      Click To Submit
+    </ActionButton>
+  );
 };

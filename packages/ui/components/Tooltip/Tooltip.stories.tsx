@@ -1,7 +1,7 @@
 import { ToolTip } from "./Tooltip";
 
 export default {
-  title: "Components/ToolTip",
+  title: "Overlays/ToolTip",
   component: ToolTip,
   tags: ["autodocs"],
 };
@@ -16,28 +16,7 @@ export const Default = {
     ),
   },
 };
-export const Medium = {
-  args: {
-    children: "Lorem ipsum dolor sit amet consectetur adipisicing elit cumque!",
-    trigger: (
-      <button className="absolute top-5 left-2/4 inline-flex size-[35px] items-center justify-center rounded-full bg-white text-violet11 shadow-[0_2px_10px] shadow-blackA4 outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-black">
-        T
-      </button>
-    ),
-    size: "md",
-  },
-};
-export const Small = {
-  args: {
-    children: "Lorem ipsum dolor sit amet consectetur adipisicing elit cumque!",
-    trigger: (
-      <button className="absolute top-5 left-2/4 inline-flex size-[35px] items-center justify-center rounded-full bg-white text-violet11 shadow-[0_2px_10px] shadow-blackA4 outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-black">
-        T
-      </button>
-    ),
-    size: "sm",
-  },
-};
+
 export const Header = {
   args: {
     children: "Lorem ipsum dolor sit amet consectetur adipisicing elit cumque!",
