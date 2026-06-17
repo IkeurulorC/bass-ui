@@ -335,7 +335,7 @@
   --color-btn-disabled-text: var(--btn-disabled-text);
 
   /* Modal */
-  --color-modal-shadow: var(0 20px 25px -5px rgba(0, 0, 0, 0.1));
+  --color-modal-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 
   /* Toggle */
   --color-toggle-primary-bg: var(--toggle-primary);
