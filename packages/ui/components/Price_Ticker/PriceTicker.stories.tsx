@@ -49,7 +49,7 @@ const mockAssets: TickerAsset[] = [
 ];
 
 const meta: Meta<typeof PriceTicker> = {
-  title: "Components/PriceTicker",
+  title: "Data Display/PriceTicker",
   component: PriceTicker,
   tags: ["autodocs"],
   argTypes: {

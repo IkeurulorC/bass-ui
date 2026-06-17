@@ -1,0 +1,24 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ActionButtonProps } from "./Tables.tsx";
+
+<Meta title="Primitive/ActionButton" />
+
+# ActionButton
+
+Your application's call-to-action buttons (hopefully). The ActionButton component is a high-performance, accessible interaction primitive designed to handle the critical "call-to-action" moments in your fintech application—whether confirming a trade, authorizing a transfer, or submitting a complex order.
+
+## Design Choices & Rationale
+
+## Usage Guidelines
+
+- Do: Use this for high-impact actions that trigger irreversible changes, such as "Confirm Transaction," "Authorize Transfer," or "Delete Wallet."
+
+- Do: Use the isLoading state for every action that involves an API call to prevent duplicate submissions and provide immediate feedback.
+
+- Don't: Use the primary intent variant for simple navigational elements (like "Back" or "Cancel") that should typically be secondary or tertiary visual weights. Use secondary or ghost variants instead.
+
+- Don't: Stack multiple "Primary" variant buttons next to each other. If you have two actions, one must be "Primary" and the other "Secondary" to maintain a clear visual hierarchy.
+
+### Props Reference
+
+<ActionButtonProps />

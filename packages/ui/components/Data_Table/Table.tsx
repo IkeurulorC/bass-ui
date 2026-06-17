@@ -13,71 +13,86 @@ import {
 import { DataTableRow } from "./TableRows";
 import { DataTablePagination } from "./TablePagination";
 
-export interface DataTableProps<TData, TValue> {
-  /**
-   * The structural blueprint defining your table columns.
-   * Maps your keys to headers and handles custom rendering.
-   */
-  columns: ColumnDef<TData, TValue>[]; /**
-   * The array of raw data objects to display in the table.
-   */
+export interface ColumnConfig {
+  accessorKey: string;
+  title: string;
+}
 
-  data: TData[]; /**
+export interface DataTableProps<TData> {
+  columns: ColumnConfig[];
+
+  data: TData[];
+
+  /**
    * Controls the global loading skeleton state.
    * When true, replaces data rows with shimmer blocks.
    * @default false
    */
 
-  isLoading?: boolean; /**
+  isLoading?: boolean;
+
+  /**
    * The number of skeleton rows to render while isLoading is true.
    * Should perfectly match your pagination page size to prevent layout jumps.
    * @default 10
    */
 
-  skeletonRowCount?: number; /**
+  skeletonRowCount?: number;
+
+  /**
    * Enables row highlighting / hover effects.
    * Set to false if you want a plain flat table design.
    * @default true
    */
 
-  enableHoverHighlight?: boolean; // ==========================================
-  // 🔢 EXTENSIBLE PAGINATION PROPS
-  // ==========================================
+  enableHoverHighlight?: boolean;
+
+  /*   
+      ==========================================
+      🔢 EXTENSIBLE PAGINATION PROPS
+      ========================================== 
+  */
+
   /**
    * When true, the component calculates page slicing internally (Client-side).
    * When false, it assumes the parent component is feeding it pre-sliced data (Server-side).
    * @default true
    */
 
-  paginateInternally?: boolean; /**
+  paginateInternally?: boolean;
+
+  /**
    * The total count of rows across the entire database.
    * Crucial for Server-side pagination so the bottom bar knows total pages.
    */
 
-  totalRowCount?: number; /**
-   * Controlled pagination state when managing pagination outside the component (Server-side).
-   */
+  totalRowCount?: number;
 
-  paginationState?: PaginationState; /**
-   * Callback fired whenever the user changes pages or page size.
-   */
+  // Controlled pagination state when managing pagination outside the component (Server-side).
 
-  onPaginationChange?: (pagination: PaginationState) => void; // ==========================================
-  // ↕️ EXTENSIBLE SORTING PROPS
-  // ==========================================
-  /**
-   * Controlled sorting state for server-side sorting logic.
-   */
+  paginationState?: PaginationState;
 
-  sortingState?: SortingState; /**
-   * Callback fired when a column header sort button is clicked.
-   */
+  //  Callback fired whenever the user changes pages or page size.
+
+  onPaginationChange?: (pagination: PaginationState) => void;
+
+  /*   
+      ==========================================
+      🔢 EXTENSIBLE SORTING PROPS
+      ========================================== 
+  */
+
+  // Controlled sorting state for server-side sorting logic.
+
+  sortingState?: SortingState;
+
+  // Callback fired when a column header sort button is clicked.
 
   onSortingChange?: (sorting: SortingState) => void;
 }
 
-export function DataTable<TData, TValue>({
-  columns,
+export function DataTable<TData>({
+  columns: userColumns,
   data,
   isLoading = false,
   skeletonRowCount = 10,
@@ -88,7 +103,39 @@ export function DataTable<TData, TValue>({
   onPaginationChange,
   sortingState,
   onSortingChange,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData>) {
+  const internalColumns = React.useMemo<ColumnDef<TData>[]>(() => {
+    return userColumns.map((column) => ({
+      accessorKey: column.accessorKey,
+      header: column.title,
+      cell: ({ getValue }) => {
+        const rawValue = getValue();
+
+        // Look at the key name to decide how to style the alignment dynamically
+        const isRightAligned = [
+          "price",
+          "holdings",
+          "change24h",
+          "value",
+          "allocation",
+        ].includes(column.accessorKey.toLowerCase());
+
+        return (
+          <div
+            className={`
+            w-full px-1 text-sm font-medium tracking-wide transition-all duration-200
+            ${isRightAligned ? "text-right justify-end" : "text-left justify-start"}
+            truncate max-w-[150px] md:max-w-none
+          `}
+            title={String(rawValue)} // Shows full text on hover if it gets truncated
+          >
+            {String(rawValue)}
+          </div>
+        );
+      },
+    }));
+  }, [userColumns]);
+
   // 1. Local states to fall back on if the developer is using client-side mode
   const [internalPagination, setInternalPagination] =
     React.useState<PaginationState>({
@@ -107,7 +154,7 @@ export function DataTable<TData, TValue>({
   // 3. Assemble the TanStack Table Options Object dynamically based on your props API
   const table = useReactTable({
     data: processedData,
-    columns,
+    columns: internalColumns,
     getCoreRowModel: getCoreRowModel(),
 
     // --- Pagination Config ---
@@ -189,7 +236,6 @@ export function DataTable<TData, TValue>({
                             <span className="text-[10px] opacity-70">
                               {isSorted === "asc" && "🔼"}
                               {isSorted === "desc" && "🔽"}
-                              {!isSorted && "↕️"}
                             </span>
                           )}
                         </div>

@@ -1,80 +1,23 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
-import { cva, VariantProps } from "class-variance-authority";
+import React, { useState, useEffect } from "react";
+import { cva } from "class-variance-authority";
 import { cn } from "../../src/utils";
 
-// 1. Context to pass 'size' downwards implicitly to children
-const StatContext = createContext<{ size?: "sm" | "md" | "lg" }>({
-  size: "lg",
-});
-
-const StatContainerVariants = cva(
-  "max-w-fit items-center bg-[linear-gradient(hsla(252,100%,57%,0.8),hsla(241,81%,54%,0.8))] overflow-hidden backdrop-blur-md",
+const TrendVariants = cva(
+  "font-mono font-semibold text-xs md:text-sm lg:tracking-wide",
   {
     variants: {
-      size: {
-        sm: "flex flex-col gap-1 p-4 rounded-xl",
-        md: " flex flex-col gap-1 px-5 pt-2 rounded-2xl",
-        lg: "relative flex flex-col p-6 rounded-2xl shadow-sm",
+      intent: {
+        positive: "text-sentiment-positive-text",
+        negative: "text-sentiment-negative-text",
+        neutral: "text-white",
       },
     },
-    defaultVariants: {
-      size: "lg",
-    },
-  }
-);
-
-const LabelVariants = cva(
-  "font-medium text-muted-foreground text-text-secondary",
-  {
-    variants: {
-      size: {
-        sm: "text-xs",
-        md: "text-sm",
-        lg: "text-sm tracking-wide",
-      },
-    },
-    defaultVariants: {
-      size: "lg",
-    },
-  }
-);
-
-const TrendVariants = cva("font-mono font-semibold", {
-  variants: {
-    intent: {
-      positive: "text-sentiment-positive-text",
-      negative: "text-sentiment-negative-text",
-      neutral: "text-white",
-    },
-    size: {
-      sm: "text-xs",
-      md: "text-sm",
-      lg: "text-sm tracking-wide",
-    },
-  },
-  defaultVariants: {
-    size: "lg",
-  },
-});
-
-const valueVariants = cva(
-  "flex flex-col justify-center items-center bg-[linear-gradient(hsla(256,72%,46%,1),hsla(241,72%,46%,0))]",
-  {
-    variants: {
-      size: {
-        sm: "h-14 w-28  rounded-xl",
-        md: "h-24 w-48 rounded-b-none rounded-t-3xl",
-        lg: "h-24 w-52 rounded-b-none rounded-t-3xl tracking-wide",
-      },
-    },
+    defaultVariants: {},
   }
 );
 
 // Structural Compound Typing
-export interface StatProps
-  extends
-    React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof StatContainerVariants> {
+export interface StatProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
@@ -88,21 +31,27 @@ export interface ValueProps extends Omit<
 }
 
 // Sub-Component: Label
-function StatLabel({
+export function Label({
   className,
   children,
   ...props
 }: React.HTMLAttributes<HTMLSpanElement>) {
-  const { size } = useContext(StatContext);
   return (
-    <span className={cn(LabelVariants({ size }), className)} {...props}>
+    <span
+      className={cn(
+        "font-medium text-muted-foreground text-text-secondary text-xs md:text-sm lg:tracking-wide",
+        className
+      )}
+      {...props}
+    >
       {children}
     </span>
   );
 }
+Label.displayName = "Stat.Label";
 
 // Sub-Component: Trend
-function StatTrend({
+export function Trend({
   value,
   trendType = "neutral",
   className,
@@ -111,8 +60,6 @@ function StatTrend({
   value: number;
   trendType?: "positive-up" | "negative-up" | "neutral";
 }) {
-  const { size } = useContext(StatContext);
-
   let intent: "positive" | "negative" | "neutral" = "neutral";
   if (trendType === "positive-up") {
     intent = value > 0 ? "positive" : value < 0 ? "negative" : "neutral";
@@ -125,16 +72,17 @@ function StatTrend({
 
   return (
     <span
-      className={cn(TrendVariants({ size, intent: intent }), className)}
+      className={cn(TrendVariants({ intent: intent }), className)}
       {...props}
     >
       {`${sign}${value}%`}
     </span>
   );
 }
+Trend.displayName = "Stat.Trend";
 
 // Sub-Component: Value Engine
-export const StatValue = ({
+export const Value = ({
   value,
   duration = 1000,
   formatter,
@@ -144,8 +92,6 @@ export const StatValue = ({
   const [displayValue, setDisplayValue] = useState<string>(() =>
     formatter ? formatter(0) : "0"
   );
-
-  const { size } = useContext(StatContext);
 
   useEffect(() => {
     let startTime: number | null = null;
@@ -182,7 +128,7 @@ export const StatValue = ({
   const finalAccessibleValue = formatter ? formatter(value) : value.toString();
 
   return (
-    <div className={valueVariants({ size })}>
+    <div className="flex flex-col justify-center items-center h-14 w-28 rounded-xl md:h-24 md:w-48 md:rounded-b-none md:rounded-t-3xl lg:h-24 lg:w-52 lg:rounded-b-none lg:rounded-t-3xl lg:tracking-wide bg-[linear-gradient(hsla(256,72%,46%,1),hsla(241,72%,46%,0))]">
       <span
         className={cn(
           "font-bold tracking-tight text-slate-100 tabular-nums text-xl md:text-3xl lg:text-4xl",
@@ -197,8 +143,10 @@ export const StatValue = ({
   );
 };
 
+Value.displayName = "Stat.Value";
+
 // Sub-Component: Custom Extras Slot
-function StatExtras({
+export function Extras({
   className,
   children,
   ...props
@@ -210,26 +158,29 @@ function StatExtras({
   );
 }
 
+Extras.displayName = "Stat.Extras";
+
 // Main Root Export Container
-export const Stat = ({
-  className,
-  children,
-  size = "lg",
-  ...props
-}: StatProps) => {
+export const Root = ({ className, children, ...props }: StatProps) => {
   return (
-    <StatContext.Provider value={{ size: size ?? "lg" }}>
-      <div
-        className={cn(StatContainerVariants({ size }), className)}
-        {...props}
-      >
-        {children}
-      </div>
-    </StatContext.Provider>
+    <div
+      className={cn(
+        "lg:relative flex flex-col gap-1 p-4 md:px-5 md:pt-2 lg:pt-6 lg:pb-6 lg:pr-6 lg:pl-6 rounded-xl md:rounded-2xl shadow-sm max-w-fit items-center bg-[linear-gradient(hsla(252,100%,57%,0.8),hsla(241,81%,54%,0.8))] overflow-hidden backdrop-blur-md",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
   );
 };
 
-Stat.Label = StatLabel;
-Stat.Trend = StatTrend;
-Stat.Value = StatValue;
-Stat.Extras = StatExtras;
+Root.displayName = "Stat.Root";
+
+export const Stat = {
+  Root,
+  Label,
+  Trend,
+  Value,
+  Extras,
+};

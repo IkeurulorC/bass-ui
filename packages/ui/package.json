@@ -1,12 +1,38 @@
 {
-  "name": "@repo/ui",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./dist/index.js",
+  "name": "@bass-ui/core",
+  "version": "0.1.1",
+  "description": "High-performance accessible UI primitives engineered for fintech interfaces.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./tokens": "./src/tokens/index.ts",
-    "./styles": "./src/styles/globals.css",
-    "./*": "./src/*.tsx"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "react",
+    "tailwind",
+    "typescript",
+    "fintech",
+    "components",
+    "bass-ui"
+  ],
+  "author": "Ikeurulor Sebastin Chiagoziem",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "framer-motion": "^12.38.0"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -14,6 +40,9 @@
     "check-types": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "build": "tsup index.ts --format esm,cjs --dts --clean --minify --external react --external react-dom --external framer-motion --external @radix-ui/* --external @tanstack/*",
+    "dev": "tsup index.ts --format esm --watch --dts",
+    "prepublishOnly": "pnpm build",
     "test": "vitest --config vitest.unit.config.ts",
     "test:ui": "vitest",
     "chromatic": "chromatic"
@@ -26,6 +55,7 @@
     "@storybook/addon-docs": "^10.3.5",
     "@storybook/addon-onboarding": "^10.3.5",
     "@storybook/addon-themes": "^10.3.5",
+    "@storybook/addon-viewport": "^9.0.8",
     "@storybook/addon-vitest": "^10.3.5",
     "@storybook/react": "^10.4.0",
     "@storybook/react-vite": "^10.3.5",
@@ -47,6 +77,7 @@
     "jsdom": "^29.1.0",
     "playwright": "^1.59.1",
     "storybook": "^10.3.5",
+    "tsup": "^8.5.1",
     "typescript": "5.9.2",
     "vite": "^8.0.9",
     "vitest": "^4.1.5"
@@ -63,16 +94,10 @@
     "@radix-ui/react-toast": "^1.2.15",
     "@radix-ui/react-toggle": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@storybook/addon-interactions": "^8.6.14",
-    "@storybook/addon-viewport": "^9.0.8",
     "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
-    "framer-motion": "^12.38.0",
-    "lucide-react": "^1.14.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
     "tailwind-merge": "^3.5.0"
   }
 }

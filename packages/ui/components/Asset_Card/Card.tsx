@@ -16,13 +16,12 @@ function useAssetCardContext() {
 
 // 1. Root Variants via CVA
 const AssetCardRootVariants = cva(
-  "flex flex-col justify-between p-4 shadow-md rounded-2xl bg-white border border-slate-100",
+  "flex flex-col justify-between p-2.5 md:p-4 rounded-2xl bg-gradient-to-b from-white to-gray-50/30 w-48 h-32 md:w-52 md:h-36 lg:w-56 lg:h-[152px] shadow-[0_4px_16px_rgba(0,0,0,0.03),inset_0_1px_0_0_rgba(255,255,255,0.6),inset_0_0_0_1px_rgba(0,0,0,0.04)]",
   {
     variants: {
       size: {
-        sm: "w-40 h-28",
-        md: "w-52 h-36",
-        lg: "w-56 h-40",
+        md: "",
+        lg: "",
       },
     },
     defaultVariants: {
@@ -31,7 +30,7 @@ const AssetCardRootVariants = cva(
   }
 );
 
-interface AssetCardRootProps
+export interface AssetCardRootProps
   extends
     React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof AssetCardRootVariants> {}
@@ -206,7 +205,7 @@ export function AssetCardVisuals({
 }
 
 // 10. Sparkline Component Props Definition
-interface SparklineProps extends React.SVGProps<SVGSVGElement> {
+export interface SparklineProps extends React.SVGProps<SVGSVGElement> {
   data: number[];
   width?: number;
   height?: number;
@@ -243,7 +242,10 @@ export const AssetCardSparkline: React.FC<SparklineProps> = ({
 
   const areaPathData = `${linePathData} L ${width} ${height} L 0 ${height} Z`;
 
-  const isUp = data[data.length - 1] >= data[0];
+  const firstValue = data[0] as number;
+  const lastValue = data[data.length - 1] as number;
+
+  const isUp = lastValue >= firstValue;
   const strokeColor = isUp ? "stroke-emerald-500" : "stroke-rose-500";
   const stopColor = isUp ? "rgb(16, 185, 129)" : "rgb(244, 63, 94)";
 
@@ -290,61 +292,3 @@ export const AssetCard = {
   Visuals: AssetCardVisuals,
   Sparkline: AssetCardSparkline,
 };
-
-// interface SparklineProps {
-//   data: number[]; // e.g., [114200, 114500, 114100, 114884]
-//   width?: number;
-//   height?: number;
-//   strokeWidth?: number;
-// }
-
-// export const Sparkline: React.FC<SparklineProps> = ({
-//   data,
-//   width = 90,
-//   height = 20,
-//   strokeWidth = 2,
-// }) => {
-//   if (!data || data.length < 2) return null;
-
-//   const minVal = Math.min(...data);
-//   const maxVal = Math.max(...data);
-//   const valRange = maxVal - minVal === 0 ? 1 : maxVal - minVal;
-
-//   // Map data points to SVG X and Y coordinates
-//   const points = data.map((val, index) => {
-//     // X distributes evenly across the width
-//     const x = (index / (data.length - 1)) * width;
-
-//     // Y flips because SVG (0,0) is top-left, but high values should be at the top
-//     const y = height - ((val - minVal) / valRange) * height;
-
-//     return { x, y };
-//   });
-
-//   // Construct the "d" path string: "M x0 y0 L x1 y1 L x2 y2..."
-//   const pathData = points
-//     .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`)
-//     .join(" ");
-
-//   // Determine color based on overall performance (last vs first)
-//   const isUp = data[data.length - 1] >= data[0];
-//   const strokeColor = isUp ? "stroke-emerald-500" : "stroke-rose-500";
-
-//   return (
-//     <svg
-//       width={width}
-//       height={height}
-//       viewBox={`0 0 ${width} ${height}`}
-//       className="overflow-visible"
-//     >
-//       <path
-//         d={pathData}
-//         fill="none"
-//         className={`${strokeColor} transition-all duration-300 ease-in-out`}
-//         strokeWidth={strokeWidth}
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//       />
-//     </svg>
-//   );
-// };

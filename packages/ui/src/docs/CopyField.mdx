@@ -1,0 +1,24 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { CopyFieldProps } from "./Tables.tsx";
+
+<Meta title="Primitive/CopyField" />
+
+# CopyField
+
+The CopyField component is a specialized, high-utility primitive designed for secure data handling in fintech applications—commonly used for wallet addresses, transaction IDs, or recovery seeds. By standardizing the copy-to-clipboard interaction, it ensures that users can reliably extract critical strings without risking transcription errors. It abstracts away the complexities of the Clipboard API while providing immediate, state-based visual confirmation.
+
+## Design Choices & Rationale
+
+## Usage Guidelines
+
+- Do: Use this for user-identifiable strings like wallet addresses or unique transaction hashes that users frequently need to share.
+
+- Do: Keep the value read-only. The component is intended for extraction, not user input.
+
+- Don't: Use this for sensitive passwords or private keys that should not be easily copy-pasted into plain-text applications.
+
+- Don't: Stack multiple CopyField components in a dense list. If you need to display a table of addresses, use a standard text-with-icon-button pattern to save vertical space.
+
+### Props Reference
+
+<CopyFieldProps />

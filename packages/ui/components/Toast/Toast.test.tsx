@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { ToastProvider, useToast } from "./ToastContext";
-import ActionButton from "../ActionButton/ActionButton";
+import { ActionButton } from "../ActionButton/ActionButton";
 import { ToastProps } from "./Toast";
 
 const ToastTrigger = (args: ToastProps) => {

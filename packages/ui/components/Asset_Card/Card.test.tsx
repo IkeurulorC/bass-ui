@@ -24,7 +24,7 @@ describe("AssetCard Strict Root Context Guardrails", () => {
     { name: "Main", ui: <AssetCard.Main>Main</AssetCard.Main> },
     { name: "Info", ui: <AssetCard.Info>Info</AssetCard.Info> },
     { name: "Value", ui: <AssetCard.Value>$100</AssetCard.Value> },
-    { name: "Rate", ui: <AssetCard.Rate>0.03%</AssetCard.Rate> },
+    { name: "Rate", ui: <AssetCard.Rate rate={0.03} /> },
     { name: "Visuals", ui: <AssetCard.Visuals>Visuals</AssetCard.Visuals> },
     {
       name: "Sparkline",

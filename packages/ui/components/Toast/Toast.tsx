@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export const ToastVariants = cva(
-  "relative overflow-hidden rounded-xl shadow-lg grid grid-cols-[auto_1fr_auto] gap-x-4 p-4 items-start border",
+  "relative overflow-hidden max-w-[320px] p-3 text-sm md:max-w-[380px] md:p-4 lg:max-w-[440px] rounded-xl shadow-lg grid grid-cols-[auto_1fr_auto] gap-x-4 items-start border",
   {
     variants: {
       intent: {
@@ -31,15 +31,9 @@ export const ToastVariants = cva(
           "text-toast-info-text",
         ],
       },
-      size: {
-        sm: "max-w-[320px] p-3 text-sm",
-        md: "max-w-[380px] p-4 text-base",
-        lg: "max-w-[440px] p-5 text-base",
-      },
     },
     defaultVariants: {
       intent: "info",
-      size: "lg",
     },
   }
 );
@@ -160,54 +154,8 @@ const intentIcons = {
   info: <InfoIcon />,
 };
 
-function ToastNotificationTitle({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return <Toast.Title className={className}>{children}</Toast.Title>;
-}
-
-function ToastNotificationDescription({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <Toast.Description className={className}>{children}</Toast.Description>
-  );
-}
-
-function ToastNotificationAction({
-  children,
-  className,
-  action,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  action?: {
-    label: string;
-    onClick: () => void;
-  };
-}) {
-  return (
-    <Toast.Action
-      altText={action ? action.label : ""}
-      className={className}
-      onClick={action ? action.onClick : () => {}}
-    >
-      {children}
-    </Toast.Action>
-  );
-}
-
 export const ToastNotification = ({
   intent,
-  size,
   title,
   description,
   className,
@@ -231,18 +179,16 @@ export const ToastNotification = ({
         if (!open) setActive(false);
         props.onOpenChange?.(open);
       }}
-      className={cn(ToastVariants({ intent, size }), className)}
+      className={cn(ToastVariants({ intent }), className)}
       duration={duration}
       {...props}
     >
       <div className="flex-shrink-0 pt-0.5">{renderedIcon}</div>
       <div className="flex flex-col gap-1 pr-8">
-        <ToastNotificationTitle className="font-semibold">
-          {title}
-        </ToastNotificationTitle>
-        <ToastNotificationDescription className="opacity-90">
+        <Toast.Title className="font-semibold">{title}</Toast.Title>
+        <Toast.Description className="opacity-90">
           {description}
-        </ToastNotificationDescription>
+        </Toast.Description>
       </div>
       <Toast.Close className="p-0.5 shrink-0 opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
         <svg
@@ -263,15 +209,16 @@ export const ToastNotification = ({
         duration={duration}
         open={active}
       />
+
       {action && (
-        <ToastNotificationAction action={action}>
-          {action.label}
-        </ToastNotificationAction>
+        <Toast.Action
+          altText={action ? action.label : ""}
+          className={className}
+          onClick={action ? action.onClick : () => {}}
+        >
+          {action?.label}
+        </Toast.Action>
       )}
     </Toast.Root>
   );
 };
-
-ToastNotification.Title = ToastNotificationTitle;
-ToastNotification.Action = ToastNotificationAction;
-ToastNotification.Description = ToastNotificationDescription;

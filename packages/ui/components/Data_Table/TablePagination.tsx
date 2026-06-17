@@ -1,6 +1,6 @@
 import { Table } from "@tanstack/react-table";
 
-interface DataTablePaginationProps<TData> {
+export interface DataTablePaginationProps<TData> {
   table: Table<TData>;
 }
 

@@ -1,19 +1,40 @@
 import { cva, VariantProps } from "class-variance-authority";
-import { useState } from "react";
-import { cn } from "../../src/utils.ts";
+import { cn } from "../../src/utils";
 
-function ActionButtonLoader({ spinnerIntent, size, className }: SpinnerProps) {
+function ActionButtonLoader({ spinnerIntent, className }: SpinnerProps) {
   return (
     <div className="absolute inset-0 flex items-center justify-center">
-      <div
-        className={cn(spinnerVariants({ spinnerIntent, size }), className)}
-      />
+      <div className={cn(spinnerVariants({ spinnerIntent }), className)} />
     </div>
   );
 }
 
-const buttonVariants = cva(
-  ["font-semibold", "flex", "justify-around", "items-center", "shadow-lg"],
+export const buttonVariants = cva(
+  [
+    "font-semibold",
+    "flex",
+    "justify-around",
+    "items-center",
+    "shadow-lg",
+    "dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]",
+    "gap-2",
+    "rounded-md",
+    "py-2",
+    "px-5",
+    "md:min-w-35",
+    "md:w-auto",
+    "md:gap-2.5",
+    "md:rounded-lg",
+    "md:py-2.5",
+    "md:px-6",
+    "lg:min-w-40",
+    "lg:w-auto",
+    "lg:gap-3",
+    "lg:rounded-lg",
+    "lg:py-3",
+    "lg:px-8",
+    "active:scale-95",
+  ],
   {
     variants: {
       intent: {
@@ -26,9 +47,8 @@ const buttonVariants = cva(
           "active:bg-btn-primary-bg-active",
         ],
         secondary: [
-          "border",
+          "dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]",
           "bg-btn-secondary-bg",
-          "border-btn-secondary-border",
           "!text-btn-secondary-text",
           "hover:bg-btn-secondary-bg-hover",
           "active:bg-btn-secondary-bg-active",
@@ -37,7 +57,7 @@ const buttonVariants = cva(
           "border",
           "bg-btn-danger-bg",
           "border-btn-danger-border",
-          "!text-[--btn-danger-text]",
+          "!text-btn-danger-text",
           "hover:bg-btn-danger-bg-hover",
           "active:bg-btn-danger-bg-active",
         ],
@@ -51,9 +71,8 @@ const buttonVariants = cva(
         ],
       },
       size: {
-        sm: ["w-full", "gap-2", "rounded-md", "py-2", "px-5"],
-        md: ["min-w-35", "w-auto", "gap-2.5", "rounded-lg", "py-2.5", "px-6"],
-        lg: ["min-w-40", "w-auto", "gap-3", "rounded-lg", "py-3", "px-8"],
+        full: ["w-full", "md:w-full", "lg:w-full"],
+        cut: [""],
       },
       isDisabled: {
         true: [
@@ -77,7 +96,7 @@ const buttonVariants = cva(
     },
     defaultVariants: {
       intent: "primary",
-      size: "lg",
+      size: "cut",
       isDisabled: false,
     },
     compoundVariants: [
@@ -90,25 +109,35 @@ const buttonVariants = cva(
   }
 );
 
-const spinnerVariants = cva(["border-2", "rounded-full", "animate-spin"], {
-  variants: {
-    spinnerIntent: {
-      primary: ["border-btn-primary-border", "border-t-white"],
-      secondary: ["border-btn-secondary-border", "border-t-white"],
-      danger: ["border-btn-danger-border", "border-t-white"],
-      ghost: ["border-btn-ghost-border", "border-t-white"],
+const spinnerVariants = cva(
+  [
+    "border-2",
+    "rounded-full",
+    "animate-spin",
+    "h-3",
+    "w-3",
+    "md:h-4",
+    "md:w-4",
+    "lg:h-5",
+    "lg:w-5",
+  ],
+  {
+    variants: {
+      spinnerIntent: {
+        primary: ["border-btn-primary-border", "border-t-white"],
+        secondary: ["border-btn-secondary-border", "border-t-white"],
+        danger: ["border-btn-danger-border", "border-t-white"],
+        ghost: ["border-btn-ghost-border", "border-t-white"],
+      },
     },
-    size: {
-      sm: ["h-3", "w-3"],
-      md: ["h-4", "w-4"],
-      lg: ["h-5", "w-5"],
+    defaultVariants: {
+      spinnerIntent: "primary",
     },
-  },
-  defaultVariants: {
-    size: "lg",
-    spinnerIntent: "primary",
-  },
-});
+  }
+);
+
+export type ButtonIntent = VariantProps<typeof buttonVariants>["intent"];
+export type ButtonSize = VariantProps<typeof buttonVariants>["size"];
 
 interface SpinnerProps
   extends
@@ -117,28 +146,32 @@ interface SpinnerProps
 
 type ClassVariant = VariantProps<typeof buttonVariants>;
 
-interface ButtonProps
+export interface ButtonProps
   extends ClassVariant, React.ButtonHTMLAttributes<HTMLButtonElement> {
-  spinnerIntent?: boolean;
+  intent?: ButtonIntent;
+  size?: ButtonSize;
+  isDisabled?: boolean;
+  isLoading?: boolean;
 }
 
-function ActionButton({
-  intent,
-  size,
-  isDisabled,
+export function ActionButton({
+  intent = "primary",
+  size = "cut",
+  isDisabled = false,
+  isLoading = false, // Controlled from the outside
   className,
+  children,
+  onClick,
   ...props
 }: ButtonProps) {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleclick = () => {
-    if (!isLoading) {
-      setIsLoading(true);
-    }
+  const handleclick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (isLoading || isDisabled) return;
+    onClick?.(e); // Let the parent's async handler run
   };
+
   return (
     <button
-      disabled={isDisabled || props.disabled}
+      disabled={isDisabled || isLoading || props.disabled}
       className={cn(
         buttonVariants({ intent, size, isDisabled, isLoading }),
         className
@@ -147,11 +180,9 @@ function ActionButton({
       {...props}
     >
       {isLoading && <ActionButtonLoader spinnerIntent={intent} />}
-      {props.children}
+      {children}
     </button>
   );
 }
 
 ActionButton.Loader = ActionButtonLoader;
-
-export default ActionButton;

@@ -1,0 +1,51 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import {
+  CommandBarItemProps,
+  CommandBarRootProps,
+  CommandBarListProps,
+  CommandBarGroupProps,
+  CommandBarInputProps,
+} from "./Tables.tsx";
+
+<Meta title="Primitive/CommandBar" />
+
+# CommandBar
+
+The CommandBar component is an essential high-velocity interaction primitive designed for power users and rapid navigation within your fintech application. It serves as a centralized "control center" that abstracts away complex menu hierarchies, allowing users to execute trades, search assets, or navigate between accounts using intuitive keyboard shortcuts. By providing a unified interface for system-wide actions, it significantly boosts user efficiency and minimizes the friction typically associated with deep-layered financial dashboards.
+
+## Design Choices & Rationale
+
+- **Keyboard-First Architecture:** Built on the `cmdk` engine, the component handles virtual focus states (`data-[selected=true]`) to ensure seamless navigation via arrow keys without triggering browser-native focus shifts.
+- **Virtualized DOM Management:** The `CommandList` uses internal state to conditionally render content based on the search query, keeping the DOM clean and performant during rapid asset filtering.
+- **Hierarchical Collapsibility:** The `CommandGroup` implementation uses local state to allow users to toggle sections, helping maintain high information density while keeping the interface focused on relevant tasks.
+- **Visual Feedback:** Uses a "crypto-glow" shadow effect and backdrop blur to ensure the bar remains a distinct, visually elevated layer regardless of the underlying dashboard content.
+
+## Usage Guidelines
+
+- Do: Group actions by context (e.g., "Trading," "Portfolio," "Settings") to make the search results skimmable and prevent the user from feeling overwhelmed.
+
+- Don't: Use this for complex multi-step workflows. If an action requires deep configuration (like setting up a new API key), the CommandBar should act as the entry point that redirects the user to a dedicated page.
+
+- Don't: Nest actions deeply within the bar. It should lead to an immediate action or a direct navigation jump.
+
+## Props Reference
+
+### Root
+
+<CommandBarRootProps />
+
+### Input
+
+<CommandBarInputProps />
+
+### List
+
+<CommandBarListProps />
+
+### Group
+
+<CommandBarGroupProps />
+
+### Item
+
+<CommandBarItemProps />

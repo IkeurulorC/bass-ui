@@ -1,9 +1,11 @@
-[15:42:02.863] [INFO] storybook v10.3.5
-[15:42:05.060] [DEBUG] Getting package.json info for C:/dev/bass-ui/packages/ui/package.json...
-[15:42:05.074] [WARN] You are currently using Storybook [1m10.3.5[22m but you have packages which are incompatible with it:
+[10:15:36.555] [INFO] storybook v10.3.5
+[10:15:40.089] [DEBUG] Getting package.json info for C:/dev/bass-ui/packages/ui/package.json...
+[10:15:40.099] [WARN] You are currently using Storybook [1m10.3.5[22m but you have packages which are incompatible with it:
 
 - @storybook/addon-interactions@8.6.14 which depends on 8.6.14
  Repo: https://github.com/storybookjs/storybook/tree/next/code/addons/interactions
+- @storybook/blocks@8.6.14 which depends on ^8.6.14
+ Repo: https://github.com/storybookjs/storybook/tree/next/code/lib/blocks
 - @storybook/test@8.6.15 which depends on 8.6.15
  Repo: https://github.com/storybookjs/storybook/tree/next/code/lib/test
 
@@ -11,25 +13,25 @@ Please consider updating your packages or contacting the maintainers for compati
 
 For more details on compatibility guidance, see:
 https://github.com/storybookjs/storybook/issues/32836
-[15:42:10.097] [WARN] 🚨 Unable to index ./components/Practice_Stepper/PracticeStepper.stories.tsx,./components/Transaction_Stepper/TransactionStepper.stories.tsx:
-  Error: Duplicate stories with id: components-practicestepper--default
-    at _StoryIndexGenerator.chooseDuplicate (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6228:13)
-    at file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6287:52
-    at Array.forEach (<anonymous>)
-    at _StoryIndexGenerator.getIndexAndStats (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6284:23)
-    at async _StoryIndexGenerator.getIndex (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6271:13)
-    at async Object.experimental_serverChannel (file:///C:/Dev/bass-ui/node_modules/.pnpm/@storybook+addon-vitest@10.3.5_@vitest+browser-playwright@4.1.5_playwright@1.59.1_vite@8.0.9__aovafkkckbzi7fxw4b3uv3dydq/node_modules/@storybook/addon-vitest/dist/preset.js:464:14)
-    at async buildDevStandalone (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:8027:32)
-    at async withTelemetry (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/_node-chunks/chunk-FIR43JGQ.js:225:12)
-    at async dev (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/bin/core.js:2736:3)
-    at async _Command.<anonymous> (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/bin/core.js:2806:92)
-[15:42:10.126] [ERROR] Error: Unable to index ./components/Practice_Stepper/PracticeStepper.stories.tsx,./components/Transaction_Stepper/TransactionStepper.stories.tsx
-    at _StoryIndexGenerator.getIndexAndStats (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6292:15)
-    at async _StoryIndexGenerator.getIndex (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:6271:13)
-    at async Object.experimental_serverChannel (file:///C:/Dev/bass-ui/node_modules/.pnpm/@storybook+addon-vitest@10.3.5_@vitest+browser-playwright@4.1.5_playwright@1.59.1_vite@8.0.9__aovafkkckbzi7fxw4b3uv3dydq/node_modules/@storybook/addon-vitest/dist/preset.js:464:14)
-    at async buildDevStandalone (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/core-server/index.js:8027:32)
-    at async withTelemetry (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/_node-chunks/chunk-FIR43JGQ.js:225:12)
-    at async dev (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/bin/core.js:2736:3)
-    at async _Command.<anonymous> (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-library+dom@10.4.0_prettier@3.8.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/storybook/dist/bin/core.js:2806:92)
-[15:42:10.132] [WARN] Broken build, fix the error above.
+[10:15:44.667] [WARN] 🚨 Unable to index ./src/docs/Introduction.mdx:
+  Error: Could not parse import/exports with acorn
+    at file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/core-server/index.js:6033:24
+    at async Promise.all (index 0)
+    at async Promise.all (index 1)
+    at async _StoryIndexGenerator.updateExtracted (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/core-server/index.js:6016:5)
+    at async _StoryIndexGenerator.ensureExtracted (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/core-server/index.js:6053:8)
+    at async _StoryIndexGenerator.initialize (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/core-server/index.js:6012:5)
+    at async file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/core-server/presets/common-preset.js:1855:10
+    at async Object.experimental_serverChannel (file:///C:/Dev/bass-ui/node_modules/.pnpm/@storybook+addon-vitest@10._7ace249525d95b0f46c66b1746bc8ac3/node_modules/@storybook/addon-vitest/dist/preset.js:450:29)
+    at async buildDevStandalone (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/core-server/index.js:8027:32)
+    at async withTelemetry (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/_node-chunks/chunk-FIR43JGQ.js:225:12)
+[10:15:44.681] [ERROR] Error: Unable to index ./src/docs/Introduction.mdx
+    at _StoryIndexGenerator.getIndexAndStats (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/core-server/index.js:6282:15)
+    at async _StoryIndexGenerator.getIndex (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/core-server/index.js:6271:13)
+    at async Object.experimental_serverChannel (file:///C:/Dev/bass-ui/node_modules/.pnpm/@storybook+addon-vitest@10._7ace249525d95b0f46c66b1746bc8ac3/node_modules/@storybook/addon-vitest/dist/preset.js:464:14)
+    at async buildDevStandalone (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/core-server/index.js:8027:32)
+    at async withTelemetry (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/_node-chunks/chunk-FIR43JGQ.js:225:12)
+    at async dev (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/bin/core.js:2736:3)
+    at async _Command.<anonymous> (file:///C:/Dev/bass-ui/node_modules/.pnpm/storybook@10.3.5_@testing-l_59814952c1fe24788e944701cbcbed53/node_modules/storybook/dist/bin/core.js:2806:92)
+[10:15:44.687] [WARN] Broken build, fix the error above.
 You may need to refresh the browser.

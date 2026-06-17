@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ModalProps } from "./Tables.tsx";
+
+<Meta title="Primitive/Modal" />
+
+# Modal
+
+The Modal component is a sophisticated, compound-component wrapper around Radix UI’s Dialog primitive. It is designed to handle complex, high-stakes interactions—such as confirming asset swaps, authorizing transfers, or configuring sensitive wallet settings—by providing a responsive, state-managed experience that adapts from a bottom-sheet (mobile) to a centered modal (desktop).
+
+## Design Choices & Rationale
+
+- Responsive Anatomy: The component uses a cva base to switch between a mobile-friendly "bottom-sheet" (rounded top corners, full-width) and a desktop-centric "centered modal" automatically based on CSS media queries.
+
+- State Syncing: It accepts both isOpen (controlled) and manages its own internal state, bridging the gap between parent-controlled logic and the Radix Dialog internal state via useEffect.
+
+- Context-Aware Actions: The ModalAction and ModalCancel sub-components automatically consume ModalContext. This means developers don't have to manually pass onClose to buttons inside the modal—the components know how to close their parent modal by default.
+
+- Semantic Accessibility: By wrapping Radix UI primitives, the component automatically manages focus-trapping (ensuring the user cannot tab outside the modal) and ARIA attributes
+
+## Usage Guidelines
+
+- Do: Use this for critical user journeys. Because it blocks the background interface, it should be reserved for irreversible actions or necessary data entry.
+
+- Do: Leverage the footer prop for a "smart" footer—passing a string will automatically generate standard "Cancel" and "Action" buttons, while passing a node allows for custom layouts.
+
+- Don't: Deeply nest modals. This creates a confusing "modal-on-modal" experience that hurts accessibility and focus.
+
+- Don't: Overload the ModalBody with too much text. Keep the modal content focused on a single task to reduce cognitive load.
+
+### Props Reference
+
+<ModalProps />

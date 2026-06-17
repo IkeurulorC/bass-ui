@@ -1,8 +1,12 @@
+import { Meta } from "@storybook/react-vite";
 import { CommandBar } from "./CommandBar";
 
-export default {
-  title: "Components/CommandBar",
+const meta: Meta<typeof CommandBar> = {
+  title: "Forms/CommandBar",
+  tags: ["autodocs"],
 };
+
+export default meta;
 
 const handleCreate = () => {};
 

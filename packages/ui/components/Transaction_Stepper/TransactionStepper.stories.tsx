@@ -4,7 +4,7 @@ import { TransactionStepper, TransactionStep } from "./TransactionStepper";
 
 // 1. Meta Configuration
 const meta: Meta<typeof TransactionStepper> = {
-  title: "Components/TransactionStepper",
+  title: "Overlays/TransactionStepper",
   component: TransactionStepper,
   tags: ["autodocs"],
   argTypes: {

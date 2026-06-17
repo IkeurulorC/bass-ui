@@ -1,8 +1,12 @@
+import { Meta } from "@storybook/react-vite";
 import { Stat } from "./Stat";
 
-export default {
-  title: "Components/KPI_Stats",
+const meta: Meta<typeof Stat> = {
+  title: "Data Display/KPI_Stats",
+  tags: ["autodocs"],
 };
+
+export default meta;
 
 const formatUSD = (val: number) =>
   new Intl.NumberFormat("en-US", {
@@ -12,41 +16,41 @@ const formatUSD = (val: number) =>
   }).format(val);
 
 export const Default = () => (
-  <Stat>
+  <Stat.Root>
     <Stat.Label>Monthly Recurring Revenue</Stat.Label>
-    <Stat.Trend trendType="positive-up" value={+8.4} />
+    <Stat.Trend trendType="neutral" value={+8.4} />
     <Stat.Value value={124560} formatter={formatUSD} />
-  </Stat>
+  </Stat.Root>
 );
 
 export const Medium = () => (
-  <Stat size="md">
+  <Stat.Root>
     <Stat.Label>Monthly Recurring Revenue</Stat.Label>
     <Stat.Trend trendType="positive-up" value={+8.4} />
     <Stat.Value value={124560} formatter={formatUSD} />
-  </Stat>
+  </Stat.Root>
 );
 
 export const Small = () => (
-  <Stat size="sm">
-    <Stat.Label>Monthly Recurring Revenue</Stat.Label>
-    <Stat.Trend trendType="positive-up" value={+8.4} />
-    <Stat.Value value={124560} formatter={formatUSD} />
-  </Stat>
-);
-
-export const Negative = () => (
-  <Stat size="sm">
-    <Stat.Label>Monthly Recurring Revenue</Stat.Label>
-    <Stat.Trend trendType="negative-up" value={+8.4} />
-    <Stat.Value value={124560} formatter={formatUSD} />
-  </Stat>
-);
-
-export const RedPositive = () => (
-  <Stat size="sm">
+  <Stat.Root>
     <Stat.Label>Monthly Recurring Revenue</Stat.Label>
     <Stat.Trend trendType="positive-up" value={-8.4} />
     <Stat.Value value={124560} formatter={formatUSD} />
-  </Stat>
+  </Stat.Root>
+);
+
+export const Negative = () => (
+  <Stat.Root>
+    <Stat.Label>Monthly Recurring Revenue</Stat.Label>
+    <Stat.Trend trendType="negative-up" value={+8.4} />
+    <Stat.Value value={124560} formatter={formatUSD} />
+  </Stat.Root>
+);
+
+export const RedPositive = () => (
+  <Stat.Root>
+    <Stat.Label>Monthly Recurring Revenue</Stat.Label>
+    <Stat.Trend trendType="negative-up" value={-8.4} />
+    <Stat.Value value={124560} formatter={formatUSD} />
+  </Stat.Root>
 );
