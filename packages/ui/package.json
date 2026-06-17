@@ -1,5 +1,5 @@
 {
-  "name": "@bass-ui/core",
+  "name": "@bass-ui-kit/core",
   "version": "0.1.1",
   "description": "High-performance accessible UI primitives engineered for fintech interfaces.",
   "type": "module",
