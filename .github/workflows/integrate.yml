@@ -2,10 +2,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-name: Bass-UI Continuous Intergration
+name: Bass-UI Continuous Integration
 
 on:
   pull_request:
+    branches: [main]
+  push:
     branches: [main]
 
 jobs:
@@ -32,7 +34,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Install Playwright Browsers
-        run: pnpm --filter "@repo/ui" exec playwright install chromium --with-deps
+        run: pnpm --filter "@bass-ui/core" exec playwright install chromium --with-deps
 
       - name: run lint
         run: pnpm lint
@@ -43,10 +45,46 @@ jobs:
       - name: run build
         run: pnpm build --filter "...[origin/main]"
 
+      - name: Size-Limit Audit
+        run: pnpm size
+
       - name: run chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          workingDir: packages/ui # Tells Chromatic exactly where the components live
-          buildScriptName: build-storybook # Forces it to run the build script in the UI package
+          workingDir: packages/ui
+          buildScriptName: build-storybook
           exitOnceUploaded: true
+
+  release:
+    name: Automated Release
+    needs: test_changes
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install Dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Create Release PR or Publish to NPM
+        uses: changesets/action@v1
+        with:
+          publish: pnpm changeset publish
+          version: pnpm changeset version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
