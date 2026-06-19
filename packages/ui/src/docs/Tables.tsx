@@ -655,7 +655,195 @@ export const CheckBoxProps = () => {
       propType: "string",
       defaultValue: "-",
       description:
-        "Essential for accessibility if no visible label is provided..",
+        "Essential for accessibility if no visible label is provided.",
+    },
+  ];
+  return <PropTable data={data} />;
+};
+
+export const ToolTipProps = () => {
+  const data: TableRowData[] = [
+    {
+      propName: "trigger",
+      propType: "ReactNode",
+      defaultValue: "-",
+      description: "The element that reveals the tooltip on hover or focus.",
+    },
+    {
+      propName: "header",
+      propType: "ReactNode",
+      defaultValue: "-",
+      description: "Optional bolded title displayed above the main content.",
+    },
+    {
+      propName: "children",
+      propType: "ReactNode",
+      defaultValue: "-",
+      description:
+        "The primary descriptive text or content within the tooltip body.",
+    },
+    {
+      propName: "className",
+      propType: "String",
+      defaultValue: "-",
+      description: "Overrides for content container styling.",
+    },
+  ];
+
+  return <PropTable data={data} />;
+};
+
+export const TransactionStepperProps = () => {
+  const data = [
+    {
+      propName: "steps",
+      propType: "TransactionStep[]",
+      defaultValue: "[]",
+      description:
+        "An array of objects defining the label, status, and description for each step.",
+    },
+    {
+      propName: "className",
+      propType: "string",
+      defaultValue: "-",
+      description: "Optional overrides for the root container's layout.",
+    },
+  ];
+  return <PropTable data={data} />;
+};
+
+export const DataTableProps = () => {
+  const data: TableRowData[] = [
+    {
+      propName: "columns",
+      propType: "ColumnConfig[]",
+      defaultValue: "-",
+      description: "Array defining header titles and data mapping keys.",
+    },
+    {
+      propName: "data",
+      propType: "TData[]",
+      defaultValue: "-",
+      description: "The raw dataset to be rendered in the table body.",
+    },
+    {
+      propName: "isLoading",
+      propType: "boolean",
+      defaultValue: "false",
+      description: "Toggles the skeleton shimmer state for all rows.",
+    },
+    {
+      propName: "skeletonRowCount",
+      propType: "number",
+      defaultValue: "10",
+      description: "The number of skeleton rows to render during loading.",
+    },
+    {
+      propName: "className",
+      propType: "string",
+      defaultValue: "-",
+      description: "Optional overrides for the root container's layout.",
+    },
+    {
+      propName: "enableHoverHighlight",
+      propType: "boolean",
+      defaultValue: "true",
+      description: "Enables row-level hover effects for improved legibility.",
+    },
+    {
+      propName: "paginateInternally",
+      propType: "boolean",
+      defaultValue: "true",
+      description:
+        "Toggles between client-side (internal) and server-side pagination.",
+    },
+    {
+      propName: "totalRowCount",
+      propType: "number",
+      defaultValue: "-",
+      description:
+        "Total rows in the database (required for server-side mode).",
+    },
+    {
+      propName: "paginationState",
+      propType: "PaginationState",
+      defaultValue: "-",
+      description: "Controlled state object for external page management.",
+    },
+    {
+      propName: "onPaginationChange",
+      propType: "(state: PaginationState) => void",
+      defaultValue: "-",
+      description: "Callback fired on page navigation or page size changes.",
+    },
+    {
+      propName: "sortingState",
+      propType: "SortingState",
+      defaultValue: "-",
+      description: "Controlled sorting state for external management.",
+    },
+    {
+      propName: "onSortingChange",
+      propType: "(state: SortingState) => void",
+      defaultValue: "-",
+      description: "Callback fired when a header is clicked to sort.",
+    },
+  ];
+
+  return <PropTable data={data} />;
+};
+
+export const ToastNotificationProps = () => {
+  const data = [
+    {
+      propName: "intent",
+      propType: "success | info | error | warning",
+      defaultValue: "info",
+      description: "Communicates the nature of the notification's message.",
+    },
+    {
+      propName: "title",
+      propType: "string",
+      defaultValue: "-",
+      description: "The title of the toast's message.",
+    },
+    {
+      propName: "icon",
+      propType: "React.ReactNode | string",
+      defaultValue: "-",
+      description: "An optional icon.",
+    },
+    {
+      propName: "action",
+      propType: "() => void",
+      defaultValue: "-",
+      description:
+        "A function to perform a simple, inconsequential action. It should be paired with a label.",
+    },
+    {
+      propName: "duration",
+      propType: "number",
+      defaultValue: "5000",
+      description:
+        "A number value representing how many miliseconds the toast should remain visible.",
+    },
+  ];
+  return <PropTable data={data} />;
+};
+
+export const ToastProviderProps = () => {
+  const data = [
+    {
+      propName: "className",
+      propType: "string",
+      defaultValue: "-",
+      description: "Optional overrides for the viewport container's layout.",
+    },
+    {
+      propName: "size",
+      propType: "sm | md | lg",
+      defaultValue: "lg",
+      description: "Dictates viewport positioning and stack width.",
     },
   ];
   return <PropTable data={data} />;

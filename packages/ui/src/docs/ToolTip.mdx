@@ -1,0 +1,28 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ToolTipProps } from "./Tables.tsx";
+
+<Meta title="Primitive/ToolTip" />
+
+# ToolTip
+
+The ToolTip component is a lightweight, context-aware utility built on Radix UI. It is designed to display secondary information. For example, keyboard shortcuts, helper text, or expanded metadata without cluttering the primary user interface.
+
+## Design Choices & Rationale
+
+- Portal Architecture: By using Tooltip.Portal, the component ensures that the tooltip is rendered outside the parent DOM structure. This prevents clipping or Z-index issues when the tooltip is placed inside an overflow-hidden container (like a sidebar or a card).
+
+- Progressive Enhancement: The component automatically wraps the trigger in a `<span>` if it isn't already a valid React element, ensuring that standard text triggers function correctly without breaking the layout.
+
+## Usage Guidelines
+
+- Do: Use tooltips for "nice-to-have" information. If the info is critical (e.g., a form error or required field), use persistent text instead.
+
+- Do: Keep the content brief. Tooltips should typically be 1–2 sentences or a small set of shortcut keys.
+
+- Don't: Place interactive elements (like buttons or links) inside a tooltip. Because tooltips disappear when the mouse moves away, they are not ideal as focusable targets.
+
+- Don't: Over-trigger them. Use tooltips sparingly to avoid "interaction fatigue," where the UI feels cluttered with pop-up text.
+
+### Props Reference
+
+<ToolTipProps />

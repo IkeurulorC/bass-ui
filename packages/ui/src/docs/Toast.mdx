@@ -1,0 +1,34 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ToastNotificationProps, ToastProviderProps } from "./Tables.tsx";
+
+<Meta title="Primitive/ToastNotification" />
+
+# ToastNotification
+
+The ToastNotification is a functional service API designed to provide non-blocking, imperative feedback. Unlike component-based primitives which are declared directly within the JSX render tree, this component is written using the useToast function. The application or toast trigger must be wrapped in the `<ToastProvider>`.
+
+## Design Choices & Rationale
+
+- Queue Orchestration: By using an API layer, you gain a single point of control for queue behavior (e.g., limiting the maximum number of simultaneous toasts or defining global stacking orders).
+
+- Viewport Management: Using cva for ViewPortVariants to set the layout configuration. Instead of hardcoding positions in CSS, you provide a clear size value (sm, md, lg) to `<ToastProvider>` that automatically calculates the correct stack positioning.
+
+- Non-Blocking Execution: The API is designed for "fire-and-forget" usage. It manages the internal queue, animation states, and timers, ensuring that notification logic does not stall the execution of your primary business operations.
+
+## Usage Guidelines
+
+- Do: Wrap your entire application (or at least the feature-module root) in the ToastProvider to ensure the context is available globally.
+
+- Do: Leverage the size prop to align your notifications with the dashboard density. Use sm for tight, sidebar-heavy layouts and lg for main-stage notifications.
+
+- Don't: Directly manipulate the toasts state array outside of the provided addToast/removeToast methods. Doing so bypasses the queue logic and will cause inconsistencies in the DOM-state mapping.
+
+## Props Reference
+
+### ToastNotification API
+
+<ToastNotificationProps />
+
+### ToastProvider API
+
+<ToastProviderProps />
