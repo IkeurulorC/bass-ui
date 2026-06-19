@@ -1,0 +1,8 @@
+[build]
+  base = "packages/ui"
+  command = "pnpm build-storybook"
+  publish = "storybook-static"
+
+# If you don't have serverless functions, you can explicitly disable them:
+[functions]
+  directory = "not-a-real-directory"
