@@ -1,0 +1,34 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { TransactionStepperProps } from "./Tables.tsx";
+
+<Meta title="Primitive/TransactionStepper" />
+
+# TransactionStepper
+
+The TransactionStepper is an essential feedback mechanism for long-running processes (like blockchain confirmations or bank transfers). It transforms abstract backend progress into a clear, linear journey.
+
+## Understanding the Step Status
+
+The component maps specific visual states to the StepStatus enum, ensuring the user immediately understands if a process is waiting, working, finished, or stuck.
+
+- PENDING: Greyed out with a numeric index. Indicates "upcoming" steps.
+
+- PROCESSING: Features an animate-ping effect, providing a "heartbeat" to let the user know the system is active.
+
+- SUCCESS: Marked with a check icon and green connectivity lines to signify a completed transition.
+
+- FAILED: Marked with a red 'X', immediately drawing the eye to where user intervention may be required.
+
+## Usage Guidelines
+
+- Do: Use this to keep users informed during multi-step processes. If a process takes more than 1–2 seconds, providing a visual sequence significantly reduces user anxiety.
+
+- Do: Keep labels short. The stepper layout works best with 1–2 words per label.
+
+- Don't: Exceed 5–6 steps. If your process requires more, consider grouping steps into a single "Stage" or using a different UI pattern like a progress bar (Bass-UI-Kit does not as yet, have one of those, but I am working on it).
+
+- Don't: Forget to provide clear description text for a step no matter how complex (It would defeat the point).
+
+### Props Reference
+
+<TransactionStepperProps />

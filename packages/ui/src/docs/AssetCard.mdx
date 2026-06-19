@@ -5,9 +5,15 @@ import { AssetCardProps } from "./Tables.tsx";
 
 # AssetCard
 
-The AssetCard component is a specialized container primitive built to surface key financial metrics at a glance. By standardizing the display of asset identification, real-time pricing, and performance indicators, it ensures that your application provides a consistent, scannable data visualization layer across portfolio dashboards and asset lists. It effectively reduces cognitive load by abstracting complex data-mapping into a clean, modular component that maintains visual integrity across varying device sizes.
+The AssetCard component is a specialized container primitive built to effectively communicate key financial metrics at a glance. By standardizing the display of asset identification, real-time pricing, and performance indicators, it ensures that your application provides a consistent, scannable data visualization layer across portfolio dashboards and asset lists. It effectively reduces cognitive load by abstracting complex data-mapping into a clean, modular component that maintains visual integrity across varying device sizes.
 
 ## Design Choices & Rationale
+
+- A light background to ensure that it stands out and clearly displays it's consistent
+
+- A sparkline to allow users to grasp the rise and falls in the value of an asset instantly
+
+- Usage of the Compound Component Pattern in order to allow flexible construction of cards based on the available data
 
 ## Usage Guidelines
 

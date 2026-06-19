@@ -5,9 +5,11 @@ import { CopyFieldProps } from "./Tables.tsx";
 
 # CopyField
 
-The CopyField component is a specialized, high-utility primitive designed for secure data handling in fintech applications—commonly used for wallet addresses, transaction IDs, or recovery seeds. By standardizing the copy-to-clipboard interaction, it ensures that users can reliably extract critical strings without risking transcription errors. It abstracts away the complexities of the Clipboard API while providing immediate, state-based visual confirmation.
+The CopyField component is a specialized primitive designed for situations where secure handling of data is paramount, e.gwallet addresses, transaction IDs, or recovery seeds. By standardizing the copy-to-clipboard interaction, it ensures that users can reliably extract critical strings without risking transcription errors. It abstracts away the complexities of the Clipboard API while providing immediate, state-based visual confirmation.
 
 ## Design Choices & Rationale
+
+- Transitioning the icon and tooltip from copy to checked for a brief window after copy is clicked as a form of visual-confirmation to users to avoid copy-pasting anxiety.
 
 ## Usage Guidelines
 

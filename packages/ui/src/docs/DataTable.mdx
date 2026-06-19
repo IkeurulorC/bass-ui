@@ -1,0 +1,40 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { DataTableProps } from "./Tables.tsx";
+
+<Meta title="Primitive/DataTable" />
+
+# DataTable
+
+The DataTable Component is a sophisticated data surfacing primitive built on top of TanStack Table. It is designed to handle both client-side and server-side state, making it suitable for anything from small, local asset lists to massive, paginated transaction histories. It abstracts pagination and sorting logic to ensure a consistent, performant data experience across the dashboard."
+
+## Design Choices & Rationale
+
+- Row-highlighting features which help anchor the user's attention to the correct data point
+
+- Skeleton loading states in order to manage user impatience and anxiety as data for tables is being fetched. It also prevents the UI from "jumping" when the data finally arrives.
+
+- Pagination and sorting logic used to better organize data in order to prevent cognitive overload for the end user.
+
+## Usage Guidelines
+
+- Do: Use the paginateInternally prop to toggle between data sources. Set to true for small, client-side datasets; set to false when connecting to a paginated API (ensure totalRowCount is provided).
+
+- Do: Define your ColumnConfig consistently. The table automatically handles right-alignment for specific keys (price, value, holdings, etc.). If you have a custom numeric column, you may need to update the alignment logic in the useMemo block.
+
+- Do: Utilize skeletonRowCount to match your API’s pageSize. This prevents the "layout jump" where the table height collapses and re-expands when the data finally loads.
+
+- Don't: Pass raw, unsliced arrays into data if you have paginateInternally set to false. The engine will assume the backend has already processed the slicing.
+
+- Don't: Override onPaginationChange or onSortingChange unless you are explicitly managing the state in a parent component (Server-side pattern).
+
+## Key Technical Considerations
+
+- State Syncing: The component uses a "Controlled vs. Uncontrolled" pattern. It falls back to internal useState hooks if you don't provide state props, making it extremely easy to drop into a project for quick prototyping.
+
+- Responsive Design: The table uses hidden classes (hidden md:table-cell) for secondary data like rank or change24h. Ensure your primary identifiers remain visible on all screen sizes to maintain usability.
+
+- Skeleton Integration: By passing an array of empty objects when isLoading is true, the component maintains the exact DOM structure of your table, ensuring that hover effects and borders remain intact even while waiting for data.
+
+### Props Reference
+
+<DataTableProps />

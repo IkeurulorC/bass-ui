@@ -5,15 +5,15 @@ import { StatusBadgeProps } from "./Tables.tsx";
 
 # StatusBadge
 
-The StatusBadge is a compact, intent-driven visual primitive used to communicate the state of asynchronous processes, resource health, or real-time connectivity. In fintech, clear status indication is critical for managing user expectations regarding trade execution, withdrawal processing, or account verification.
+The StatusBadge is a compact, intent-driven visual primitive used to communicate the state of asynchronous processes, resource health, or real-time connectivity. It offers clear and constant status indication which is critical for managing user expectations regarding things like trade execution, withdrawal processing, or account verification.
 
 ## Design Choices & Rationale
 
-- Pulse Animation: The live status variant utilizes a CSS animate-ping utility on an absolute-positioned span. This creates a subtle ripple effect, providing a "heartbeat" indicator that makes it immediately obvious that a process is currently active or connected.
+- Pulse Animation: The live status variant utilizes a CSS animate-ping utility on an absolute-positioned span. This created a subtle ripple effect, providing a "heartbeat" indicator that makes it immediately obvious that a process is currently active or connected.
 
 - CVA (Class Variance Authority): Both the container (badgeVariants) and the icon wrapper (iconWrapperVariants) utilize CVA. This approach decouples the structural logic from the state-based styling, making it trivial to add new statuses (like archived or attention) in the future without modifying the component’s core markup.
 
-- Visual Hierarchy: The icon wrapper is visually distinct, ensuring that even if a user is color-blind, the combination of icon shape (check vs. alert triangle vs. clock) and animation behavior provides enough context to understand the state.
+- Visual Hierarchy: The icon wrapper is visually distinct, ensuring that even if a user is color-blind, the combination of icon shape (check vs. alert triangle vs. clock) and animation behavior provides enough context to understand the status.
 
 ## Usage Guidelines
 
