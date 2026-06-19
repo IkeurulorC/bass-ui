@@ -1,0 +1,79 @@
+Yes, you can absolutely move away from the "default Storybook look." Storybook is designed to be highly customizable, and you can change everything from the branding to the entire layout structure.
+
+Here are the three levels of customization, from easiest to most advanced:
+
+### 1. The Easy Wins (The `manager.ts` file)
+In your `.storybook` folder (or where your configuration lives), look for a `manager.ts` file. If you don't have one, create it. This file allows you to strip away the default "Storybook-y" feeling:
+
+```typescript
+import { addons } from '@storybook/manager-api';
+import { create } from '@storybook/theming';
+
+const theme = create({
+  base: 'light',
+  brandTitle: 'Bass UI Kit', // Changes the top-left title
+  brandUrl: 'https://bass-ui.com', // Links to your site
+  brandTarget: '_self',
+});
+
+addons.setConfig({
+  theme,
+  panelPosition: 'right', // Moves the controls panel to the right
+  sidebar: {
+    showRoots: true, // Hides the default "stories" root
+  },
+});
+
+```
+
+### 2. Custom CSS Injection (The `preview.ts` file)
+
+You can inject a custom CSS file into the Storybook manager. Create a `manager-head.html` file in your `.storybook` folder. This allows you to hide UI elements that scream "Storybook" (like the search bar or the toolbar buttons):
+
+```html
+<style>
+  /* Hide the Storybook toolbar */
+  #storybook-toolbar { display: none; }
+  
+  /* Make the sidebar look custom */
+  .sidebar-header { background: #1a1a1a !important; }
+</style>
+
+```
+
+### 3. The "Docs-Only" Mode (The Professional Way)
+
+If you want it to feel less like a developer tool and more like an official documentation site (like Stripe's or Tailwind's), switch Storybook into **Docs-only mode**.
+
+In your `main.ts` config:
+
+```typescript
+export default {
+  stories: ['../packages/ui/**/*.mdx'],
+  addons: [
+    {
+      name: '@storybook/addon-docs',
+      options: { configureJSX: true },
+    },
+  ],
+  features: {
+    storyStoreV7: true,
+  },
+};
+
+```
+
+By focusing on **MDX** files, you can write full pages of prose, installation guides, and component showcases that look like a documentation website, effectively hiding the "story" canvas entirely.
+
+### Pro-Tip: The "Bass UI" Branding
+
+Since you have a specific UI kit, you should use your own **CSS variables** inside Storybook. If you have a `styles.css` file with your brand colors, import it into `preview.ts`:
+
+```typescript
+import '../packages/ui/src/styles/brand.css';
+
+```
+
+This will apply your own fonts, shadows, and spacing to the Storybook components, making the *components* feel like your own brand immediately.
+
+**Which part bothers you the most? Is it the layout (the panels/sidebar) or the way the components themselves look inside the documentation?**
