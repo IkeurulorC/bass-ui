@@ -15,14 +15,18 @@ Install the package via npm or yarn:
 
 ```sh
 # pnpm (Recommended)
-pnpm add bass-ui-kit
+pnpm add @bass-ui-kit/core
 
 # npm
-npm install [package-name]
+npm install @bass-ui-kit/core
 
 # yarn
-yarn add [package-name]
+yarn add @bass-ui-kit/core
 ```
+
+### Setup
+
+Upon installing the library, add "@source '../node_modules/@bass-ui-kit/core/dist/\*_/_.{js,ts,jsx,tsx}';" and "@import '@bass-ui-kit/core/styles.css';" to your code.
 
 ## 📚 Documentation
 

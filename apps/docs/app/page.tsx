@@ -1,102 +1,127 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+"use client";
+import {
+  AssetCard,
+  DataTable,
+  ColumnConfig,
+  ActionButton,
+} from "@bass-ui-kit/core";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
+interface CryptoAsset {
+  id: string;
+  rank: number;
+  name: string;
+  symbol: string;
+  marketCap: string;
+  price: string; // Backend now hands us clean, pre-formatted strings
+  change24h: string; // Ready-to-display percentages
+}
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+const mockAssets: CryptoAsset[] = [
+  {
+    id: "1",
+    rank: 1,
+    name: "Bitcoin",
+    symbol: "BTC",
+    marketCap: "0.52 BTC",
+    price: "$114,884",
+    change24h: "-1.49%",
+  },
+  {
+    id: "2",
+    rank: 2,
+    name: "Ethereum",
+    symbol: "ETH",
+    marketCap: "4.2 ETH",
+    price: "$4,231",
+    change24h: "-1.49%",
+  },
+  {
+    id: "3",
+    rank: 3,
+    name: "XRP",
+    symbol: "XRP",
+    marketCap: "1200 XRP",
+    price: "$3.01",
+    change24h: "-4.50%",
+  },
+  {
+    id: "4",
+    rank: 4,
+    name: "Tether",
+    symbol: "USDT",
+    marketCap: "3000 USDT",
+    price: "$1.00",
+    change24h: "+0.01%",
+  },
+  {
+    id: "5",
+    rank: 5,
+    name: "Shiba Inu",
+    symbol: "SHIB",
+    marketCap: "5,000,000 SHIB",
+    price: "$0.000012",
+    change24h: "-2.11%",
+  },
+];
 
+const columns: ColumnConfig[] = [
+  { accessorKey: "rank", title: "#" },
+  { accessorKey: "name", title: "Name" },
+  { accessorKey: "symbol", title: "Ticker" },
+  { accessorKey: "marketCap", title: "Market Cap" },
+  { accessorKey: "price", title: "Price" },
+  { accessorKey: "change24h", title: "24h Change" },
+];
+
+export default function Page() {
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
-
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/docs/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <div>
+      <AssetCard.Root>
+        <AssetCard.Header>
+          <AssetCard.Icon>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#ffffff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-9 h-9 border rounded-full text-white bg-orange-400 p-1 lucide lucide-bitcoin-icon lucide-bitcoin"
+            >
+              <path d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.26m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727" />
+            </svg>
+          </AssetCard.Icon>
+          <AssetCard.Group>
+            <span className="font-semibold text-slate-800">Bitcoin</span>
+            <span className="font-light text-gray-500">BTC</span>
+          </AssetCard.Group>
+        </AssetCard.Header>
+        <AssetCard.Main>
+          <AssetCard.Info>
+            <AssetCard.Value>$112,350</AssetCard.Value>
+            <AssetCard.Rate rate={-0.03} />
+          </AssetCard.Info>
+          <AssetCard.Visuals>
+            <AssetCard.Sparkline
+              strokeWidth={1}
+              data={[4350, 4310, 4340, 4210, 4250, 4180, 4112, 4058]}
             />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.dev/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-        <Button appName="docs" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.dev?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.dev →
-        </a>
-      </footer>
+          </AssetCard.Visuals>
+        </AssetCard.Main>
+      </AssetCard.Root>
+
+      <ActionButton intent="danger">Test</ActionButton>
+
+      <DataTable
+        columns={columns}
+        data={mockAssets}
+        isLoading={false}
+        paginateInternally={true}
+        skeletonRowCount={5}
+      />
     </div>
   );
 }
