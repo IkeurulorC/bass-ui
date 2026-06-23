@@ -34,7 +34,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Install Playwright Browsers
-        run: pnpm --filter "@bass-ui/core" exec playwright install chromium --with-deps
+        run: pnpm --filter "@bass-ui-kit/core" exec playwright install chromium --with-deps
 
       - name: run lint
         run: pnpm lint
