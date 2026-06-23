@@ -1,6 +1,7 @@
 "use client";
 import { Inter } from "next/font/google";
 import { CommandBar } from "@bass-ui-kit/core";
+import Link from "next/link";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -50,24 +51,24 @@ export default function RootLayout({
           {/* 2. SIDEBAR */}
           <aside className="fixed top-16 left-0 bottom-0 w-64 bg-white border-r border-gray-200 z-20 overflow-y-auto p-4 hidden md:block">
             <nav className="space-y-1">
-              <a
+              <Link
                 href="/"
                 className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg bg-gray-100 text-gray-900"
               >
                 Overview
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/analytics"
                 className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
               >
                 Analytics
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/settings"
                 className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
               >
                 Settings
-              </a>
+              </Link>
             </nav>
           </aside>
 
