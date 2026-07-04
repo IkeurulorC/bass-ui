@@ -16,6 +16,7 @@ import { DataTablePagination } from "./TablePagination";
 export interface ColumnConfig {
   accessorKey: string;
   title: string;
+  cell?: (info: { getValue: () => unknown; row: unknown }) => React.ReactNode;
 }
 
 export interface DataTableProps<TData> {
@@ -108,10 +109,17 @@ export function DataTable<TData>({
     return userColumns.map((column) => ({
       accessorKey: column.accessorKey,
       header: column.title,
-      cell: ({ getValue }) => {
-        const rawValue = getValue();
+      cell: (info) => {
+        // 1. Check if the user provided a custom JSX cell function
+        if (column.cell) {
+          return column.cell({
+            getValue: info.getValue,
+            row: info.row.original,
+          });
+        }
 
-        // Look at the key name to decide how to style the alignment dynamically
+        // 2. Otherwise, fallback to your default text rendering
+        const rawValue = info.getValue();
         const isRightAligned = [
           "price",
           "holdings",
@@ -127,7 +135,7 @@ export function DataTable<TData>({
             ${isRightAligned ? "text-right justify-end" : "text-left justify-start"}
             truncate max-w-[150px] md:max-w-none
           `}
-            title={String(rawValue)} // Shows full text on hover if it gets truncated
+            title={String(rawValue)}
           >
             {String(rawValue)}
           </div>

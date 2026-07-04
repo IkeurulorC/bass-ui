@@ -1,13 +1,11 @@
-# @bass-ui/core
+# @bass-ui-kit/core
 
-## 0.1.2
+## 0.2.0
 
-### Patch Changes
+### Minor Changes
 
-- "Fixing Styling Configuration Issues"
-
-## 0.1.1
+- 9af3a21: "Fixing Styling Configuration Issues"
 
 ### Patch Changes
 
-- fix: resolve strict undefined typecheck in transactionStepper.tsx
+- "Fixing Styling Issues... again"

@@ -36,6 +36,7 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+.npmrc
 
 # Chromatic Logging and Debugging Files
 build-storybook.log
@@ -43,4 +44,4 @@ chromatic.log
 chromatic-build-*.xml
 chromatic-diagnostics.json
 
-storybook-static/
+storybook-static/.npmrc

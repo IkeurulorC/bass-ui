@@ -1,10 +1,7 @@
 "use client";
-import { Inter } from "next/font/google";
 import { CommandBar } from "@bass-ui-kit/core";
 import Link from "next/link";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -13,9 +10,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} min-h-screen bg-gray-50 text-gray-900`}
-      >
+      <body className="min-h-screen bg-gray-50 dark:bg-slate-950 text-gray-900">
         {/* 1. TOPBAR */}
         <header className="fixed top-0 left-0 right-0 h-20 bg-white border-b border-gray-200 z-30 flex items-center justify-between px-6">
           <div className="font-bold text-xl tracking-tight">DashApp</div>
@@ -49,7 +44,7 @@ export default function RootLayout({
 
         <div className="pt-16">
           {/* 2. SIDEBAR */}
-          <aside className="fixed top-16 left-0 bottom-0 w-64 bg-white border-r border-gray-200 z-20 overflow-y-auto p-4 hidden md:block">
+          <aside className="fixed top-16 left-0 bottom-0 w-64 bg-white border-r border-gray-200 z-20 overflow-y-auto p-6 hidden md:block">
             <nav className="space-y-1">
               <Link
                 href="/"

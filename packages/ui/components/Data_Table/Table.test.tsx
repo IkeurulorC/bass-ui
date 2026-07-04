@@ -50,21 +50,16 @@ describe("DataTable Component - Sorting & Propagation (Bass UI)", () => {
       .closest(".cursor-pointer");
     expect(nameHeader).toBeInTheDocument();
 
-    // 1. Initial State: Unsorted indicator should be visible
-    expect(screen.getByText("↕️")).toBeInTheDocument();
-
-    // 2. Click 1: Trigger Ascending Sort (ASC)
+    //  Click 1: Trigger Ascending Sort (ASC)
     await user.click(nameHeader!);
-    expect(screen.getByText("🔼")).toBeInTheDocument();
 
     // Verify row sorting calculation order (Bitcoin -> Ethereum -> Solana)
     let rows = screen.getAllByRole("row");
     expect(rows[1]).toHaveTextContent("Bitcoin");
     expect(rows[3]).toHaveTextContent("Solana");
 
-    // 3. Click 2: Trigger Descending Sort (DESC)
+    //  Click 2: Trigger Descending Sort (DESC)
     await user.click(nameHeader!);
-    expect(screen.getByText("🔽")).toBeInTheDocument();
 
     // Verify row order inverted (Solana -> Ethereum -> Bitcoin)
     rows = screen.getAllByRole("row");

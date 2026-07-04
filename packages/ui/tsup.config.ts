@@ -5,6 +5,7 @@ export default defineConfig({
   format: ["esm", "cjs"],
   dts: true,
   clean: true,
+  injectStyle: false,
   minify: true,
   // This tells tsup to treat ALL these packages as external boundaries
   external: [

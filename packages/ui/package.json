@@ -1,6 +1,6 @@
 {
   "name": "@bass-ui-kit/core",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "High-performance accessible UI primitives engineered for fintech interfaces.",
   "type": "module",
   "main": "./dist/index.cjs",

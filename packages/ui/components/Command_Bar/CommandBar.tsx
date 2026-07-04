@@ -158,7 +158,7 @@ export const CommandItem = React.forwardRef<
   <Command.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-pointer select-none items-center rounded-xl px-3 py-2.5 mt-1 text-zinc-300 font-medium transition-all duration-150 outline-none data-[selected=true]:bg-white/[0.06] data-[selected=true]:text-white data-[selected=true]:translate-x-0.5 data-[disabled=true]:opacity-40",
+      "relative flex cursor-pointer select-none items-center rounded-xl px-3 py-2.5 mt-1 text-zinc-300 font-medium transition-all duration-150 outline-none data-[selected=true]:bg-black/[0.06] data-[selected=true]:text-black data-[selected=true]:translate-x-0.5 data-[disabled=true]:opacity-40",
       className
     )}
     {...props}

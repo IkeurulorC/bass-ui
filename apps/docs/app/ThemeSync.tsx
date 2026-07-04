@@ -22,7 +22,7 @@ export function ThemeSync() {
 
     // 4. Create the listener for system changes
     const handler = (event: MediaQueryListEvent) => updateTheme(event.matches);
-    
+
     // 5. Attach the listener
     mediaQuery.addEventListener("change", handler);
 
