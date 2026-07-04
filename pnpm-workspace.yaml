@@ -2,9 +2,9 @@ packages:
   - "apps/*"
   - "packages/*"
 allowBuilds:
-  '@swc/core': true
+  "@swc/core": true
   esbuild: true
   sharp: true
   unrs-resolver: true
 minimumReleaseAgeExclude:
-  - '@bass-ui-kit/core@0.1.3'
+  - "@bass-ui-kit/core@0.1.3"

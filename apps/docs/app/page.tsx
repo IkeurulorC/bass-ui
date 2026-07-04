@@ -1,5 +1,14 @@
 "use client";
+<<<<<<< HEAD
 import { AssetCard, DataTable, ColumnConfig } from "@bass-ui-kit/core";
+=======
+import {
+  AssetCard,
+  DataTable,
+  ColumnConfig,
+  ActionButton,
+} from "@bass-ui-kit/core";
+>>>>>>> Head@{3}
 
 interface CryptoAsset {
   id: string;
@@ -108,13 +117,20 @@ export default function Page() {
         </AssetCard.Main>
       </AssetCard.Root>
 
+<<<<<<< HEAD
       <h2 className="mt-4 ml-2 text-xl font-medium">My Assets</h2>
+=======
+      <ActionButton intent="danger">Test</ActionButton>
+>>>>>>> Head@{3}
 
       <DataTable
         columns={columns}
         data={mockAssets}
         isLoading={false}
+<<<<<<< HEAD
         enableHoverHighlight={true}
+=======
+>>>>>>> Head@{3}
         paginateInternally={true}
         skeletonRowCount={5}
       />
