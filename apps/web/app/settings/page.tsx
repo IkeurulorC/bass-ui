@@ -7,12 +7,19 @@ import { Toggle, ToolTip } from "@bass-ui-kit/core";
 export default function Page() {
   const { currency, setCurrency } = React.useContext(SettingsContext);
   const { theme, setTheme } = useTheme();
-  const [isDark, setIsDark] = React.useState(() => {
-    // Check localStorage first, then fallback to system preference
+  const [isDark, setIsDark] = React.useState(false);
+
+  React.useEffect(() => {
     const saved = localStorage.getItem("theme");
-    if (saved) return saved === "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
+    if (saved) {
+      setIsDark(saved === "dark");
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setIsDark(prefersDark);
+    }
+  }, []);
 
   React.useEffect(() => {
     const root = document.documentElement;

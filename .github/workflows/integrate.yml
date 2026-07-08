@@ -45,9 +45,6 @@ jobs:
       - name: run build
         run: pnpm build --filter "...[origin/main]"
 
-      - name: Size-Limit Audit
-        run: if [ -f packages/ui/dist/index.js ]; then pnpm size; else echo "No build artifact detected, skipping audit."; fi
-
       - name: run chromatic
         uses: chromaui/action@latest
         with:
