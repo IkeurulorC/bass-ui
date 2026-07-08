@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
   const [isDark, setIsDark] = useState(() => {
-    // Check localStorage first, then fallback to system preference
-    const saved = localStorage.getItem("theme");
-    if (saved) return saved === "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    // Only access localStorage if we are in the browser
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("theme");
+      if (saved) return saved === "dark";
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+    // Fallback for server-side rendering
+    return false;
   });
 
   useEffect(() => {

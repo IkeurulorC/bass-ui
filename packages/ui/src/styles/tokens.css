@@ -111,7 +111,6 @@
   --ring-destructive: var(--color-red-200);
 
   /* Data Table */
-<<<<<<< HEAD
   --table-canvas: oklch(0.98 0.004 247.86); /* gray-50 equivalent */
   --table-bg: oklch(1 0 0); /* pure white */
   --table-header-bg: oklch(0.98 0.004 247.86); /* gray-50 equivalent */
@@ -122,18 +121,6 @@
   --table-skeleton: oklch(0.91 0.006 247.93); /* gray-200 equivalent */
   --table-accent-green: oklch(0.527 0.154 150.07); /* emerald-600 equivalent */
   --table-accent-purple: oklch(0.485 0.22 284.14); /* violet-600 equivalent */
-=======
-  --table-canvas: var(--color-gray-50);
-  --table-bg: var(--color-white);
-  --table-header-bg: var(--color-gray-50);
-  --table-header-text: var(--color-gray-500);
-  --table-body-text: var(--color-gray-900);
-  --table-border: var(--color-gray-100);
-  --table-hover: var(--color-gray-50);
-  --table-skeleton: var(--color-gray-200);
-  --table-accent-green: var(--color-emerald-600);
-  --table-accent-purple: var(--color-violet-600);
->>>>>>> Head@{3}
 }
 
 .dark {
@@ -233,7 +220,6 @@
   --copy-btn-icon: var(--color-slate-400);
 
   /* Data Table */
-<<<<<<< HEAD
   --table-canvas: oklch(0.129 0.004 285.44); /* zinc-950 equivalent */
   --table-bg: oklch(0.208 0.012 254.34); /* slate-900 equivalent */
   --table-header-bg: oklch(0.129 0.004 285.44); /* zinc-950 equivalent */
@@ -248,32 +234,9 @@
   --table-skeleton: oklch(0.372 0.015 253.97); /* slate-800 equivalent */
   --table-accent-green: oklch(0.784 0.15 152.18); /* emerald-400 equivalent */
   --table-accent-purple: oklch(0.656 0.183 274.62); /* indigo-400 equivalent */
-=======
-  --table-canvas: var(--color-zinc-950);
-  --table-bg: var(--color-slate-900);
-  --table-header-bg: var(--color-zinc-950);
-  --table-header-text: var(--color-slate-400);
-  --table-body-text: var(--color-slate-100);
-  --table-border: var(--color-slate-800);
-  --table-hover: color-mix(in srgb, var(--color-indigo-950), transparent 40%);
-  --table-skeleton: var(--color-slate-800);
-  --table-accent-green: var(--color-emerald-400);
-  --table-accent-purple: var(--color-indigo-400);
->>>>>>> Head@{3}
 }
 
 @theme {
-  --font-sans: "Inclusive Sans Variable", ui-sans-serif, system-ui, sans-serif;
-
-  /* =========================================
-             SEMANTIC TOKENS (The "Intent")
-     ========================================= */
-  --color-action-primary-bg: var(--action-primary-bg);
-  --color-action-primary-hover: var(--action-primary-hover);
-  --color-action-ghost-hover: var(--action-ghost-hover);
-  --color-action-disabled: var(--action-disabled);
-  --color-focus-ring: var(--focus-ring);
-
   --color-sentiment-positive-bg: var(--sentiment-positive-bg);
   --color-sentiment-negative-bg: var(--sentiment-negative-bg);
   --color-sentiment-warning-bg: var(--sentiment-warning-bg);

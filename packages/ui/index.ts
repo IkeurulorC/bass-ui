@@ -1,5 +1,3 @@
-// packages/ui/index.ts (or src/index.ts)
-
 /*  ==================
      Exporting the Action Button
      ================== */

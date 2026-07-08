@@ -10,7 +10,7 @@ import { fetchDashboardData, CoinData } from "../action";
 import { SettingsContext } from "./SettingsContext";
 import { formatCompact } from "../utils";
 
-// Clean, unified interface matching what comes out of your data action mapping
+// Clean, unified interface matching what comes out of the data action mapping
 interface CryptoAsset {
   rank: number;
   name: string;
@@ -114,7 +114,7 @@ export const getAnalyticsColumns = (currency: string): ColumnConfig[] => [
     title: "Action",
     // Use the cell function to render your component
     cell: (info) => {
-      const coin = info.row;
+      const coin = info.row as Analytics;
 
       if (!coin) return null;
 

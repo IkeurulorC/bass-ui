@@ -78,7 +78,7 @@ export default function RootLayout({
                 <div className="flex items-center gap-4 border-l border-gray-200 dark:border-slate-800 pl-6">
                   <ThemeToggle />
                   <a
-                    href="..."
+                    href="#"
                     className="text-sm font-semibold text-gray-500 dark:text-slate-400 hover:text-black dark:hover:text-white transition-colors"
                   >
                     v1.0.4

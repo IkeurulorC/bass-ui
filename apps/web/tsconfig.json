@@ -6,7 +6,10 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "paths": {
+      "@bass-ui-kit/core": ["../../packages/ui/index.ts"]
+    }
   },
   "include": [
     "**/*.ts",
