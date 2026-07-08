@@ -74,8 +74,10 @@ export function ModalFooter({
 export function ModalCancel({
   onClick,
   className,
+  children,
   ...props
 }: {
+  children?: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
 }) {
@@ -98,7 +100,7 @@ export function ModalCancel({
       )}
       {...props}
     >
-      Cancel
+      {children ? children : "Cancel"}
     </ActionButton>
   );
 }
