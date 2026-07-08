@@ -55,36 +55,3 @@ jobs:
           workingDir: packages/ui
           buildScriptName: build-storybook
           exitOnceUploaded: true
-
-  release:
-    name: Automated Release
-    needs: test_changes
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
-      - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Create Release PR or Publish to NPM
-        uses: changesets/action@v1
-        with:
-          publish: pnpm changeset publish
-          version: pnpm changeset version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
