@@ -22,11 +22,6 @@ export function ThemeSync() {
 
     // 4. Create the listener for system changes
     const handler = (event: MediaQueryListEvent) => updateTheme(event.matches);
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> Head@{3}
     // 5. Attach the listener
     mediaQuery.addEventListener("change", handler);
 
@@ -35,8 +30,4 @@ export function ThemeSync() {
   }, []);
 
   return null; // This component has no UI, it just manages the logic
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> Head@{3}
