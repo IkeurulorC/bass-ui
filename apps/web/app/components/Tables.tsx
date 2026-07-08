@@ -199,8 +199,8 @@ export const getAnalyticsColumns = (currency: string): ColumnConfig[] => [
               Last synced: Just now
             </span>
             <div className="flex gap-2">
-              <Modal.Cancel />
-              <ActionButton className="bg-indigo-500 dark:bg-indigo-600 hover:bg-indigo-600 text-white px-6">
+              <Modal.Cancel>Close</Modal.Cancel>
+              <ActionButton className="bg-indigo-500 dark:bg-indigo-600 hover:bg-indigo-600 text-white px-6 hidden">
                 Refresh Feed
               </ActionButton>
             </div>
