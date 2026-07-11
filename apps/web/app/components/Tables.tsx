@@ -122,6 +122,7 @@ export const getAnalyticsColumns = (currency: string): ColumnConfig[] => [
         <Modal
           isOpen={false}
           trigger={<ActionButton intent="ghost">More Data</ActionButton>}
+          className="bg-transparent dark:bg-slate-950"
         >
           <Modal.Header>
             <div className="flex flex-col gap-1 text-left">
@@ -129,7 +130,7 @@ export const getAnalyticsColumns = (currency: string): ColumnConfig[] => [
                 Further Asset Information
               </h3>
               <p className="my-0 text-xs text-slate-400">
-                Asset{"&apos;"}s Market Cap and Fully Diluted Valuation
+                Assets Market Cap and Fully Diluted Valuation
               </p>
             </div>
           </Modal.Header>

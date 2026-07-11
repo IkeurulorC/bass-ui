@@ -5,6 +5,8 @@
 /* FIX: Tell Tailwind v4 to track your shared component classes */
 @source "../../../packages/ui/components/**/*.tsx";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
