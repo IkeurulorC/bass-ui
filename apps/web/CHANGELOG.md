@@ -1,5 +1,19 @@
 # web
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @bass-ui-kit/core@0.2.2
+
+## 0.1.6
+
+### Patch Changes
+
+- Updated dependencies
+  - @bass-ui-kit/core@0.2.1
+
 ## 0.1.5
 
 ### Patch Changes
