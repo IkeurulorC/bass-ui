@@ -1,6 +1,6 @@
 // apps/docs/app/registry.tsx
 import React from "react";
-import { ActionButtonShowcase } from "./_showcases/ActionButtonShowcase";
+import { ActionButtonShowcase } from "../_showcases/ActionButtonShowcase";
 
 // Temporary placeholding components for the ones you haven't built showcases for yet
 const Placeholder = ({ name }: { name: string }) => (
