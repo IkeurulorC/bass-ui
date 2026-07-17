@@ -1,0 +1,96 @@
+<style>
+  #storybook-preview-iframe {
+    background-color: transparent !important;
+  }
+
+  .sidebar-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    background-color: #0b0f19 !important;
+  }
+
+  #storybook-explorer-tree {
+    padding: 12px !important;
+  }
+
+  /* Style the navigation group headers (FOUNDATIONS, DATA DISPLAY, etc.) */
+  .sidebar-subheading {
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: #475569 !important; /* Slate-600 */
+    margin-top: 24px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Style the navigation links */
+  .sidebar-item {
+    font-size: 0.825rem !important;
+    font-weight: 500 !important;
+    color: #94a3b8 !important; /* Muted Slate */
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    margin-bottom: 2px !important;
+    transition: all 0.15s ease-in-out !important;
+  }
+
+  /* Active sidebar item styling (Sleek subtle blue wash) */
+  .sidebar-item[data-selected="true"] {
+    background-color: rgba(59, 130, 246, 0.1) !important;
+    color: #3b82f6 !important; /* Tremor Blue text */
+    font-weight: 600 !important;
+  }
+
+  .sidebar-item:hover:not([data-selected="true"]) {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    color: #f8fafc !important;
+  }
+
+  /* 2. Custom Tabs (Canvas vs. Docs) */
+  .tabbutton {
+    font-size: 0.825rem !important;
+    font-weight: 600 !important;
+    color: #64748b !important;
+    text-transform: capitalize !important;
+    border-bottom: 2px solid transparent !important;
+    padding: 12px 16px !important;
+  }
+
+  .tabbutton-active {
+    color: #3b82f6 !important;
+    border-bottom-color: #3b82f6 !important;
+  }
+
+  /* 3. Hide Unnecessary Toolbar Elements */
+  button[title*="Zoom"],
+  button[title*="Grid"],
+  button[title*="Backgrounds"],
+  button[title*="Measure"],
+  button[title*="Outline"] {
+    display: none !important;
+  }
+
+  /* Smooth out scrollbars to match dark mode */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 3px;
+  }
+  .sb-main-padded,
+  .sb-main-centered,
+  #storybook-preview-wrapper {
+    background-color: #0f172a !important;
+  }
+
+  /* Hide the onboarding / update notification banners in the sidebar */
+  div[class*="onboarding"],
+  div[id*="notifications"] {
+    display: none !important;
+  }
+</style>
