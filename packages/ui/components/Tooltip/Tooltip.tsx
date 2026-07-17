@@ -36,10 +36,6 @@ export const ToolTip = ({
               </div>
             )}
             {children}
-            {/* The arrow is pulled up by 2px (-mt-[2px]) and given a width 
-              to ensure it overlaps the border area cleanly. 
-              The fill matches the background, and we omit any border on the arrow itself.
-            */}
             <Tooltip.Arrow
               className="fill-white dark:fill-zinc-950 -mt-[2px]"
               width={12}

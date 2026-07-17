@@ -125,9 +125,9 @@ const spinnerVariants = cva(
     variants: {
       spinnerIntent: {
         primary: ["border-btn-primary-border", "border-t-white"],
-        secondary: ["border-btn-secondary-border", "border-t-white"],
+        secondary: ["border-btn-secondary-bg", "border-t-white"],
         danger: ["border-btn-danger-border", "border-t-white"],
-        ghost: ["border-btn-ghost-border", "border-t-white"],
+        ghost: ["border-btn-ghost-bg", "border-t-white"],
       },
     },
     defaultVariants: {
