@@ -58,7 +58,13 @@ export const TransactionStepper: React.FC<TransactionStepperProps> = ({
 }) => {
   return (
     <div className={`w-full max-w-4xl mx-auto p-6 ${className}`}>
-      <div className="flex items-center justify-between relative">
+      {/* items-start (not items-center): each step column's height varies with
+          how many lines its label/description wrap to, which differs per
+          step especially on narrow (mobile) widths. items-center vertically
+          centers each column against the tallest one, pulling bubbles off
+          the fixed progress line whenever wrapping differs between steps.
+          items-start keeps every bubble flush with the line regardless. */}
+      <div className="flex items-start justify-between relative">
         {/* Progress Line Background */}
         <div className="absolute top-4 left-0 right-0 h-0.5 bg-gray-200 -z-0" />
 
@@ -71,7 +77,11 @@ export const TransactionStepper: React.FC<TransactionStepperProps> = ({
           return (
             <div
               key={step.id}
-              className="flex flex-col items-center flex-1 relative"
+              // min-w-0 lets each column actually shrink to its flex-basis
+              // share on narrow screens instead of the browser's default
+              // flex min-width (min-content), which can force the label to
+              // stay wider than the column and crowd into its neighbor.
+              className="flex flex-col items-center flex-1 min-w-0 relative"
             >
               {/* Connector line connecting previous step to this one */}
               {index > 0 && (
